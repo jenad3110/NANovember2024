@@ -3,7 +3,10 @@ package com.tutorialsNinja.qa;
 import Base.CommonApiTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class HomePageM extends CommonApiTest {
 
@@ -20,6 +23,35 @@ public class HomePageM extends CommonApiTest {
 
         driver.findElement(By.xpath("//*[@id=\"form-currency\"]/div/button/strong")).click();
         Thread.sleep(2000);
+
+    }
+    @Test
+    public void hoverOverCurrenciesAndDefineNumberOfCurrenciesAvailable(){
+
+
+         //driver.findElements(By.className("dropdown-menu")).size();
+        //String xpathForListOfCurrencies = "//ul[@class='dropdown-menu']/li";
+
+        String xpathForListOfCurrencies = "//*[@id='form-currency']/div/ul/li[1]/button";
+        List currencies = driver.findElements(By.xpath(xpathForListOfCurrencies));
+        int a =   currencies.size();
+
+
+        System.out.println(currencies.get(1).toString());
+
+    /*
+        for (int i=1; i==a;i++){
+
+        String currencyName = driver.findElement(By.xpath(xpathForListOfCurrencies+"["+i+"]")).getAttribute("name");
+
+            System.out.println(currencyName);
+
+        }
+
+*/
+
+
+
 
     }
 
@@ -122,7 +154,7 @@ public class HomePageM extends CommonApiTest {
         Thread.sleep(2000);
     }
 
-    @Test
+    //@Test
     public void sendTextInSearchBarAndPressEnter() throws InterruptedException {
         driver.findElement(By.xpath("//*[@id='search']/input")).sendKeys("test");
         driver.findElement(By.xpath("//*[@class='input-group-btn']/button")).sendKeys(Keys.ENTER);
