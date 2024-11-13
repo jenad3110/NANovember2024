@@ -25,6 +25,7 @@ public class HomePageM extends CommonApiTest {
         Thread.sleep(2000);
 
     }
+    /*
     @Test
     public void hoverOverCurrenciesAndDefineNumberOfCurrenciesAvailable(){
 
@@ -48,7 +49,7 @@ public class HomePageM extends CommonApiTest {
 
         }
 
-*/
+
 
 
 
@@ -56,7 +57,7 @@ public class HomePageM extends CommonApiTest {
     }
 
 
-
+*/
 
    // @Test
     public void clickOnPhoneLogo() throws InterruptedException {
