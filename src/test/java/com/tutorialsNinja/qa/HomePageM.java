@@ -114,6 +114,7 @@ public class HomePageM extends CommonApiTest {
         Thread.sleep(2000);
     }
 
+
    // @Test
     public void sendTextInSearchBarAndClickButtonSearch() throws InterruptedException {
         driver.findElement(By.xpath("//*[@id='search']/input")).sendKeys("test");
