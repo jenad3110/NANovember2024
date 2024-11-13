@@ -25,7 +25,7 @@ public class HomePageM extends CommonApiTest {
         Thread.sleep(2000);
 
     }
-    /*
+
     @Test
     public void hoverOverCurrenciesAndDefineNumberOfCurrenciesAvailable(){
 
@@ -33,20 +33,19 @@ public class HomePageM extends CommonApiTest {
          //driver.findElements(By.className("dropdown-menu")).size();
         //String xpathForListOfCurrencies = "//ul[@class='dropdown-menu']/li";
 
-        String xpathForListOfCurrencies = "//*[@id='form-currency']/div/ul/li[1]/button";
-        List currencies = driver.findElements(By.xpath(xpathForListOfCurrencies));
-        int a =   currencies.size();
+        WebElement listOfCurrencies = driver.findElement(By.xpath("//ul[@class='dropdown-menu']"));
+
+        List<WebElement> allSug = listOfCurrencies.findElements(By.tagName("button"));
+
+        int numberOfCurrencies = allSug.size();
+
+        //System.out.println(allSug.get(2).getAttribute("name"));
+        //System.out.println(numberOfCurrencies);
 
 
-        System.out.println(currencies.get(1).toString());
+        for(int i =0; i<numberOfCurrencies; i++) {
 
-    /*
-        for (int i=1; i==a;i++){
-
-        String currencyName = driver.findElement(By.xpath(xpathForListOfCurrencies+"["+i+"]")).getAttribute("name");
-
-            System.out.println(currencyName);
-
+            System.out.println(allSug.get(i).getAttribute("name"));
         }
 
 
@@ -57,7 +56,6 @@ public class HomePageM extends CommonApiTest {
     }
 
 
-*/
 
    // @Test
     public void clickOnPhoneLogo() throws InterruptedException {
