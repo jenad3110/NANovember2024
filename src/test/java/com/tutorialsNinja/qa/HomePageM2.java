@@ -36,7 +36,6 @@ public class HomePageM2 extends CommonApiTest{
 
     }
 
-
     @Test
     public void clickOnCurrencyDollarSign() throws InterruptedException {
 
