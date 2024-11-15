@@ -29,7 +29,7 @@ public class HomePageM extends CommonApiTest {
     }
 
     @Test
-    public void hoverOverCurrencies(){
+    public void hoverOverCurrencies() throws InterruptedException {
         WebElement currencySection = driver.findElement(By.xpath("//*[@id=\"form-currency\"]/div/button/span"));
         WebElement listOfCurrencies = driver.findElement(By.xpath("//ul[@class='dropdown-menu']"));
 
@@ -39,35 +39,30 @@ public class HomePageM extends CommonApiTest {
         action.click();
 
         List<WebElement> allSug = listOfCurrencies.findElements(By.tagName("button"));
-        for(int i=0; i< allSug.size();i++){
-        allSug.get(i).click();
-        System.out.println(allSug.get(i).getText());
-        driver.navigate().back();
+        for(int i=0; i< allSug.size();i++) {
+            allSug.get(i).click();
+            System.out.println(allSug.get(i).getText());
+            driver.navigate().back();
 
-        action.
-        //driver.findElements(By.className("dropdown-menu")).size();
-        //String xpathForListOfCurrencies = "//ul[@class='dropdown-menu']/li";
+            //driver.findElements(By.className("dropdown-menu")).size();
+            //String xpathForListOfCurrencies = "//ul[@class='dropdown-menu']/li";
 /*
-        WebElement listOfCurrencies = driver.findElement(By.xpath("//ul[@class='dropdown-menu']"));
+            WebElement listOfCurrencies = driver.findElement(By.xpath("//ul[@class='dropdown-menu']"));
 
-        List<WebElement> allSug = listOfCurrencies.findElements(By.tagName("button"));
+            List<WebElement> allSug = listOfCurrencies.findElements(By.tagName("button"));
 
-        int numberOfCurrencies = allSug.size();
+            int numberOfCurrencies = allSug.size();
 
-        //System.out.println(allSug.get(2).getAttribute("name"));
-        //System.out.println(numberOfCurrencies);
+            //System.out.println(allSug.get(2).getAttribute("name"));
+            //System.out.println(numberOfCurrencies);
 
 
-        for(int i =0; i<numberOfCurrencies; i++) {
+            for (int i = 0; i < numberOfCurrencies; i++) {
 
-            System.out.println(allSug.get(i).getAttribute("name"));
+                System.out.println(allSug.get(i).getAttribute("name"));
+            }
+            */
         }
-
-
-
-*/
-
-
     }
 
 
