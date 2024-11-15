@@ -14,7 +14,6 @@ public class HomePageM2 extends CommonApiTest{
         driver.findElement(By.xpath("//ul[@class='dropdown-menu']/li[2]/button")).click();
         String actualSign = driver.findElement(By.xpath("//*[@class='btn-group']/button/strong")).getText();
         Thread.sleep(2000);
-
         System.out.println(expectedPoundSign.equalsIgnoreCase(actualSign));
         System.out.println(actualSign);
 
