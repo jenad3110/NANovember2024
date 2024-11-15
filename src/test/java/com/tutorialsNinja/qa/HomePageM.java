@@ -4,8 +4,10 @@ import Base.CommonApiTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
+import javax.swing.*;
 import java.util.List;
 
 public class HomePageM extends CommonApiTest {
@@ -27,12 +29,25 @@ public class HomePageM extends CommonApiTest {
     }
 
     @Test
-    public void hoverOverCurrenciesAndDefineNumberOfCurrenciesAvailable(){
+    public void hoverOverCurrencies(){
+        WebElement currencySection = driver.findElement(By.xpath("//*[@id=\"form-currency\"]/div/button/span"));
+        WebElement listOfCurrencies = driver.findElement(By.xpath("//ul[@class='dropdown-menu']"));
 
+        Actions action = new Actions(driver);
 
-         //driver.findElements(By.className("dropdown-menu")).size();
+        action.moveToElement(currencySection).build().perform();
+        action.click();
+
+        List<WebElement> allSug = listOfCurrencies.findElements(By.tagName("button"));
+        for(int i=0; i< allSug.size();i++){
+        allSug.get(i).click();
+        System.out.println(allSug.get(i).getText());
+        driver.navigate().back();
+
+        action.
+        //driver.findElements(By.className("dropdown-menu")).size();
         //String xpathForListOfCurrencies = "//ul[@class='dropdown-menu']/li";
-
+/*
         WebElement listOfCurrencies = driver.findElement(By.xpath("//ul[@class='dropdown-menu']"));
 
         List<WebElement> allSug = listOfCurrencies.findElements(By.tagName("button"));
@@ -50,7 +65,7 @@ public class HomePageM extends CommonApiTest {
 
 
 
-
+*/
 
 
     }
