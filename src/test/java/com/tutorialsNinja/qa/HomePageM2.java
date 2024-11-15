@@ -23,14 +23,14 @@ public class HomePageM2 extends CommonApiTest{
     //@Test
     public void clickOnCurrencyEuroSign() throws InterruptedException {
 
-        String expectedPoundSign= "€";
+        String expectedEuroSign = "€";
 
         driver.findElement(By.xpath("//*[@class='hidden-xs hidden-sm hidden-md']")).click();
         driver.findElement(By.xpath("//ul[@class='dropdown-menu']/li[1]/button")).click();
         String actualSign = driver.findElement(By.xpath("//*[@class='btn-group']/button/strong")).getText();
         Thread.sleep(2000);
 
-        System.out.println(expectedPoundSign.equalsIgnoreCase(actualSign));
+        System.out.println(expectedEuroSign.equalsIgnoreCase(actualSign));
         System.out.println(actualSign);
 
     }
@@ -38,14 +38,14 @@ public class HomePageM2 extends CommonApiTest{
     @Test
     public void clickOnCurrencyDollarSign() throws InterruptedException {
 
-        String expectedPoundSign= "$";
+        String expectedDollarSign = "$";
 
         driver.findElement(By.xpath("//*[@class='hidden-xs hidden-sm hidden-md']")).click();
         driver.findElement(By.xpath("//ul[@class='dropdown-menu']/li[3]/button")).click();
         String actualSign = driver.findElement(By.xpath("//*[@class='btn-group']/button/strong")).getText();
         Thread.sleep(2000);
 
-        System.out.println(expectedPoundSign.equalsIgnoreCase(actualSign));
+        System.out.println(expectedDollarSign.equalsIgnoreCase(actualSign));
         System.out.println(actualSign);
 
     }
