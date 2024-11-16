@@ -171,4 +171,14 @@ public class HomePageM extends CommonApiTest {
     }
 
 
+
+    @Test
+    public void hoverOverNavigationBar(){
+
+
+      WebElement navigationBar =  driver.findElement(By.xpath("//ul[@class='nav navbar-nav']"));
+
+        System.out.println(navigationBar.findElements(By.tagName("a")).get(1).getText());
+    }
+
 }
