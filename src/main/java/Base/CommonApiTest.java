@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class CommonApiTest {
 
-    public WebDriver driver;
+    public  WebDriver driver;
     @BeforeMethod
     public void SetUp() {
 
