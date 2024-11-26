@@ -88,6 +88,9 @@ public class HomePage extends CommonApiTest {
     @FindBy(xpath = "//*[@class='dropdown']/a/i")
     WebElement myAccountButton;
 
+    @FindBy(linkText = "Login")
+    WebElement loginButton;
+
 
 
         // Methods to interact with elements
@@ -231,4 +234,11 @@ public class HomePage extends CommonApiTest {
         waitFor(5);
 
     }
+
+    public void accessLoginPage(){
+        clickMyAccountButton();
+         loginButton.click();
+    }
+
+
     }
