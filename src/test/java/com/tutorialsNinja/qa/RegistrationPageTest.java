@@ -14,41 +14,51 @@ public class RegistrationPageTest extends CommonApiTest {
 
     RegistrationPage registrationPage;
     RegistrationPage rightColumnPage;
+    HomePage homePage;
     String actualResult;
     String expectedResult;
-    /*
 
 
-    @Test
+
+    @Test(groups = "end to end")
     public void registerNewUser() {
+        homePage.accessRegistrationPage();
         registrationPage.enterFirstName("John");
         registrationPage.enterLastName("Doe");
-        registrationPage.enterEmail("johndoe@example.com");
+        registrationPage.enterEmail(generateEmail());
         registrationPage.enterTelephone("1234567890");
         registrationPage.enterPassword("password123");
         registrationPage.enterConfirmPassword("password123");
         registrationPage.agreeToPrivacyPolicy();
         registrationPage.clickContinue();
-
-        waitFor(10);
     }
 
+    @Test(groups = "end to end")
+    public void accessAccountAfterRegistration() {
+        homePage.accessRegistrationPage();
+        homePage.clickMyAccountButton();
+        homePage.accessRegistrationPage();
+        registerNewUser();
+        registrationPage.clickOrderHistoryLink();
+    }
 
     @Test
     public void testRightColumnDisplayed() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isColumnRightDisplayed());
     }
 
     @Test
     public void testMyAccountLink() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isMyAccountLinkDisplayed());
         rightColumnPage.clickMyAccountLink();
         // Add additional assertions to verify the result after clicking
     }
 
-
     @Test
     public void testPasswordLink() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isForgottenPasswordLinkDisplayed());
         rightColumnPage.clickPasswordLink();
         // Add additional assertions to verify the result after clicking
@@ -56,6 +66,7 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testAddressBookLink() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isAddressBookLinkDisplayed());
         rightColumnPage.clickAddressBookLink();
         // Add additional assertions to verify the result after clicking
@@ -63,6 +74,7 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testWishListLink() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isWishListLinkDisplayed());
         rightColumnPage.clickWishListLink();
         // Add additional assertions to verify the result after clicking
@@ -70,6 +82,7 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testOrderHistoryLink() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isOrderHistoryLinkDisplayed());
         rightColumnPage.clickOrderHistoryLink();
         // Add additional assertions to verify the result after clicking
@@ -77,6 +90,7 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testDownloadsLink() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isDownloadsLinkDisplayed());
         rightColumnPage.clickDownloadsLink();
         // Add additional assertions to verify the result after clicking
@@ -84,6 +98,7 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testRecurringPaymentsLink() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isRecurringPaymentsLinkDisplayed());
         rightColumnPage.clickRecurringPaymentsLink();
         // Add additional assertions to verify the result after clicking
@@ -91,6 +106,7 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testRewardPointsLink() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isRewardPointsLinkDisplayed());
         rightColumnPage.clickRewardPointsLink();
         // Add additional assertions to verify the result after clicking
@@ -98,6 +114,7 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testReturnsLink() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isReturnsLinkDisplayed());
         rightColumnPage.clickReturnsLink();
         // Add additional assertions to verify the result after clicking
@@ -105,6 +122,7 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testTransactionsLink() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isTransactionsLinkDisplayed());
         rightColumnPage.clickTransactionsLink();
         // Add additional assertions to verify the result after clicking
@@ -112,16 +130,17 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testNewsletterLink() {
+        homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isNewsletterLinkDisplayed());
         rightColumnPage.clickNewsletterLink();
         // Add additional assertions to verify the result after clicking
     }
-*/
 
     // testing firstName Field
 
     @Test
     public void testValidFirstName() {
+        homePage.accessRegistrationPage();
         registrationPage.enterFirstName("John");
         registrationPage.submitForm();
         assertTrue(registrationPage.isFirstNameAccepted());
@@ -129,18 +148,18 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testFirstNameWithNumbers() {
-        registrationPage.enterFirstName("John123");
+        homePage.accessRegistrationPage();
+        registrationPage.enterFirstName("john123");
         registrationPage.submitForm();
-        actualResult= registrationPage.getErrorMessageForInvalidFirstName();
-        expectedResult = expectedResult("FirstNameErrorMessage");
-        assertEquals(actualResult,expectedResult);
+        String actualResult = registrationPage.returnErrorMessageForFirstName();
+        String expectedResult = "First Name must be between 1 and 32 characters!";
+        assertEquals(actualResult, expectedResult);
         // bug must return error message
-
-
     }
 
     @Test
     public void testFirstNameWithSpecialCharacters() {
+        homePage.accessRegistrationPage();
         registrationPage.enterFirstName("John@Doe");
         registrationPage.submitForm();
         assertTrue(registrationPage.isErrorDisplayedForFirstName());
@@ -148,24 +167,27 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testFirstNameWithSpaces() {
+        homePage.accessRegistrationPage();
         registrationPage.enterFirstName("John Doe");
         registrationPage.submitForm();
-        assertEquals(registrationPage.getErrorMessageForInvalidFirstName(),expectedResult("FirstNameErrorMessage"));
+        assertEquals(registrationPage.getErrorMessageForInvalidFirstName(), expectedResult("FirstNameErrorMessage"));
         assertTrue(registrationPage.isFirstNameAccepted()); // must return false
         // BUG
     }
 
     @Test
     public void testEmptyFirstNameField() {
+        homePage.accessRegistrationPage();
         registrationPage.enterFirstName("");
         registrationPage.submitForm();
         assertTrue(registrationPage.isErrorDisplayedForFirstName());
-        assertEquals(registrationPage.getErrorMessageForInvalidFirstName(),expectedResult("FirstNameErrorMessage"));
-        //BUG
+        assertEquals(registrationPage.getErrorMessageForInvalidFirstName(), expectedResult("FirstNameErrorMessage"));
+        // BUG
     }
 
     @Test
     public void testValidLastName() {
+        homePage.accessRegistrationPage();
         registrationPage.enterLastName("Doe");
         registrationPage.submitForm();
         assertTrue(registrationPage.isLastNameAccepted());
@@ -173,35 +195,39 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @Test
     public void testLastNameWithNumbers() {
+        homePage.accessRegistrationPage();
         registrationPage.enterLastName("Doe123");
         registrationPage.submitForm();
         String actualResult = registrationPage.getErrorMessageForInvalidLastName();
         String expectedResult = "Last Name must be between 1 and 32 characters!";
         assertEquals(actualResult, expectedResult);
-        //BUG
+        // BUG
     }
 
     @Test
     public void testLastNameWithSpecialCharacters() {
+        homePage.accessRegistrationPage();
         registrationPage.enterLastName("Doe@Doe");
         registrationPage.submitForm();
         assertTrue(registrationPage.isErrorDisplayedForLastName());
-        //BUG
+        // BUG
     }
 
     @Test
     public void testLastNameWithSpaces() {
+        homePage.accessRegistrationPage();
         registrationPage.enterLastName("Doe Smith");
         registrationPage.submitForm();
         String actualResult = registrationPage.getErrorMessageForInvalidLastName();
         String expectedResult = "Last Name must be between 1 and 32 characters!";
         assertEquals(actualResult, expectedResult);
         assertFalse(registrationPage.isLastNameAccepted()); // must return false
-        //BUG
+        // BUG
     }
 
     @Test
     public void testEmptyLastNameField() {
+        homePage.accessRegistrationPage();
         registrationPage.enterLastName("");
         registrationPage.submitForm();
         assertTrue(registrationPage.isErrorDisplayedForLastName());
@@ -231,8 +257,8 @@ public class RegistrationPageTest extends CommonApiTest {
 
     @BeforeMethod
     public void accessRegisterPage(){
-        HomePage homePage = new HomePage(driver);
-        homePage.accessRegisterPage();
+        homePage = new HomePage(driver);
+
         registrationPage = new RegistrationPage(driver);
         rightColumnPage = new RegistrationPage(driver);
 
@@ -240,5 +266,11 @@ public class RegistrationPageTest extends CommonApiTest {
     }
 
 
+    @Test
+    public void printAllerrorMessages(){
+
+        registrationPage.submitForm();
+        registrationPage.getAllerrorMessageDisplayed();
+    }
 
 }

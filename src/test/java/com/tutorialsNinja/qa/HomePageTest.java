@@ -153,7 +153,7 @@ public class HomePageTest extends CommonApiTest {
     @Test
     public void accessRegisterPage(){
 
-        homepage.accessRegisterPage();
+        homepage.accessRegistrationPage();
     }
 
 }

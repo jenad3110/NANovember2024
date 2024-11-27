@@ -1,24 +1,23 @@
 package Base;
 
-import com.tutorialsninja.pa.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.Duration;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 public class CommonApiTest {
 
 
     public Properties properties;
-
-
     public  WebDriver driver;
+
     @BeforeMethod
     public void SetUp() {
 
@@ -71,6 +70,20 @@ public class CommonApiTest {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+
+
+    public static String generateEmail(){
+
+        DateFormat df = new SimpleDateFormat("MMddyyyyHHmmssa");
+        Date date = new Date();
+        df.format(date);
+
+        return "JohnDoe"+df.format(date) +"@gmail.com";
+
+
 
     }
 

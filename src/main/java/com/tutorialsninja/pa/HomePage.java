@@ -219,7 +219,7 @@ public class HomePage extends CommonApiTest {
     }
 
 
-    public void accessRegisterPage(){
+    public void accessRegistrationPage(){
         clickMyAccountButton();
         clickRegisterButton();
     }

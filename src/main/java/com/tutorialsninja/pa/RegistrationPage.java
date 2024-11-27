@@ -120,6 +120,7 @@ public class RegistrationPage extends CommonApiTest {
 
         public void enterFirstName(String fName) {
             firstName.sendKeys(fName);
+            System.out.println("first name "+fName+ " entered" );
         }
 
         public void enterLastName(String lName) {
@@ -325,4 +326,25 @@ public class RegistrationPage extends CommonApiTest {
         }
         return false;
     }
+
+
+    public void getAllerrorMessageDisplayed(){
+
+            for (WebElement element : errorMessages)
+
+
+                System.out.println(element.getText());
+
+    }
+
+    @FindBy (xpath = "//*[@id=\"account\"]/div[2]/div/div")
+    WebElement erormsgforfirstname;
+
+
+        public String returnErrorMessageForFirstName(){
+
+            System.out.println("");
+            return  erormsgforfirstname.getText();
+        }
 }
+
