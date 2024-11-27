@@ -18,6 +18,8 @@ public class CommonApiTest {
     public Properties properties;
     public  WebDriver driver;
 
+
+
     @BeforeMethod
     public void SetUp() {
 
@@ -30,6 +32,8 @@ public class CommonApiTest {
 
 
     }
+
+
 
     @AfterMethod
     public void CloseTheBrowser(){

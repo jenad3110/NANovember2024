@@ -18,7 +18,6 @@ public class HomePage extends CommonApiTest {
 
         PageFactory.initElements(driver, this);
 
-
     }
 
     // Web Elements
@@ -91,6 +90,12 @@ public class HomePage extends CommonApiTest {
     @FindBy(linkText = "Login")
     WebElement loginButton;
 
+    @FindBy (linkText = "Desktops")
+    WebElement  desktopsDropdown;
+
+    @FindBy (linkText = "Show AllDesktops")
+    WebElement showAllDesktops;
+
 
 
         // Methods to interact with elements
@@ -114,22 +119,6 @@ public class HomePage extends CommonApiTest {
 
         public void clickLogo() {
             logo.click();
-        }
-
-        public String getHiddenCurrencyMenuText() {
-            return hiddenCurrencyMenu.getText();
-        }
-
-        public void clickPoundSign() {
-            poundSign.click();
-        }
-
-        public void clickEuroSign() {
-            euroSign.click();
-        }
-
-        public void clickDollarSign() {
-            dollarSign.click();
         }
 
         public void clickWishListLogo() {
@@ -241,4 +230,23 @@ public class HomePage extends CommonApiTest {
     }
 
 
+    public void hoverOverDesktopSection(WebDriver driver){
+
+
+            Actions actions = new Actions(driver);
+            actions.moveToElement(desktopsDropdown).build().perform();
+
+    }
+
+    public void clickShowAllDesktops(){
+
+       showAllDesktops.click();
+
+    }
+
+
+    public void navigateToDesktopsCategory(WebDriver driver) {
+        hoverOverDesktopSection(driver);
+      //  showAllDesktops.click();
+        }
     }
