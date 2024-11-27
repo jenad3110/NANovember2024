@@ -4,7 +4,8 @@
 
     <test name="regression Test" >
         <classes>
-            <class name="com.tutorialsNinja.qa.HomePageM" />
+            <class name="com.tutorialsNinja.qa.HomePageTest" />
+            <class name="com.tutorialsNinja.qa.RegistrationPageTest"/>
         </classes>
     </test>
 
