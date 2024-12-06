@@ -22,9 +22,17 @@ public class ProductPage {
     @FindBy(xpath = "//*[@id=\"product-product\"]/div[1]")
     private WebElement successMessage;
 
+    @FindBy(xpath="//*[@id=\"cart\"]/button")
+    WebElement shoppingCartButton;
+
     // Methods
     public void addToCart() {
         addToCartButton.click();
+    }
+
+    public void clickShoppingCartButton(){
+
+        shoppingCartButton.click();
     }
 
     public boolean isProductAddedToCart() {

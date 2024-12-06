@@ -27,10 +27,7 @@ public class CommonApiTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://tutorialsninja.com/demo");
-
         System.out.println("Before Method in common API accessed ");
-
-
     }
 
 
@@ -79,7 +76,7 @@ public class CommonApiTest {
 
 
 
-    public static String generateEmail(){
+    public  String generateEmail(){
 
         DateFormat df = new SimpleDateFormat("MMddyyyyHHmmssa");
         Date date = new Date();
