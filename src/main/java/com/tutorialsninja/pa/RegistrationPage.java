@@ -346,5 +346,7 @@ public class RegistrationPage extends CommonApiTest {
             System.out.println("");
             return  erormsgforfirstname.getText();
         }
+
+
 }
 

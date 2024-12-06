@@ -156,4 +156,20 @@ public class HomePageTest extends CommonApiTest {
         homepage.accessRegistrationPage();
     }
 
+    @Test
+    public void hoverOverDesktopSection(){
+
+        homepage.hoverOverDesktopSection(driver);
+
+    }
+
+    @Test
+    public void clickShowAllDesktopsUnderDesktopSection(){
+
+        homepage.hoverOverDesktopSection(driver);
+        homepage.clickShowAllDesktops();
+
+        //---> next page desktop product page
+    }
+
 }

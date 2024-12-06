@@ -31,6 +31,8 @@ public class RegistrationPageTest extends CommonApiTest {
         registrationPage.enterConfirmPassword("password123");
         registrationPage.agreeToPrivacyPolicy();
         registrationPage.clickContinue();
+
+        waitFor(10);
     }
 
     @Test(groups = "end to end")
@@ -168,7 +170,7 @@ public class RegistrationPageTest extends CommonApiTest {
     @Test
     public void testFirstNameWithSpaces() {
         homePage.accessRegistrationPage();
-        registrationPage.enterFirstName("John Doe");
+        registrationPage.enterFirstName(expectedResult("FirstNameWithSpaces"));
         registrationPage.submitForm();
         assertEquals(registrationPage.getErrorMessageForInvalidFirstName(), expectedResult("FirstNameErrorMessage"));
         assertTrue(registrationPage.isFirstNameAccepted()); // must return false
@@ -235,6 +237,7 @@ public class RegistrationPageTest extends CommonApiTest {
         String expectedResult = expectedResult("LastNameErrorMessage");
         assertEquals(actualResult, expectedResult);
     }
+
 
 
 
