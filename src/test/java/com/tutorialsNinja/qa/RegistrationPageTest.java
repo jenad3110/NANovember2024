@@ -19,20 +19,20 @@ public class RegistrationPageTest extends CommonApiTest {
     String expectedResult;
 
 
-
     @Test(groups = "end to end")
     public void registerNewUser() {
         homePage.accessRegistrationPage();
-        registrationPage.enterFirstName("John");
-        registrationPage.enterLastName("Doe");
-        registrationPage.enterEmail(generateEmail());
-        registrationPage.enterTelephone("1234567890");
-        registrationPage.enterPassword("password123");
-        registrationPage.enterConfirmPassword("password123");
+        registrationPage.enterFirstName(expectedResult("FirstName"));
+        registrationPage.enterLastName(expectedResult("LastName"));
+        registrationPage.enterEmail(registrationPage.generateEmail());
+        System.out.println(registrationPage.getEmail());
+        registrationPage.enterTelephone(expectedResult("Telephone"));
+        registrationPage.enterPassword(expectedResult("Password"));
+        registrationPage.enterConfirmPassword(expectedResult("Password"));
         registrationPage.agreeToPrivacyPolicy();
         registrationPage.clickContinue();
+        waitFor(30);
 
-        waitFor(10);
     }
 
     @Test(groups = "end to end")
@@ -143,7 +143,7 @@ public class RegistrationPageTest extends CommonApiTest {
     @Test
     public void testValidFirstName() {
         homePage.accessRegistrationPage();
-        registrationPage.enterFirstName("John");
+        registrationPage.enterFirstName(expectedResult("FirsName"));
         registrationPage.submitForm();
         assertTrue(registrationPage.isFirstNameAccepted());
     }
@@ -151,7 +151,7 @@ public class RegistrationPageTest extends CommonApiTest {
     @Test
     public void testFirstNameWithNumbers() {
         homePage.accessRegistrationPage();
-        registrationPage.enterFirstName("john123");
+        registrationPage.enterFirstName(expectedResult("FirstNameWithNumbers"));
         registrationPage.submitForm();
         String actualResult = registrationPage.returnErrorMessageForFirstName();
         String expectedResult = "First Name must be between 1 and 32 characters!";
@@ -162,7 +162,7 @@ public class RegistrationPageTest extends CommonApiTest {
     @Test
     public void testFirstNameWithSpecialCharacters() {
         homePage.accessRegistrationPage();
-        registrationPage.enterFirstName("John@Doe");
+        registrationPage.enterFirstName(expectedResult("FirstNameWithSpecialCharacters"));
         registrationPage.submitForm();
         assertTrue(registrationPage.isErrorDisplayedForFirstName());
     }
@@ -180,7 +180,7 @@ public class RegistrationPageTest extends CommonApiTest {
     @Test
     public void testEmptyFirstNameField() {
         homePage.accessRegistrationPage();
-        registrationPage.enterFirstName("");
+        registrationPage.enterFirstName(expectedResult("EmptyFirstNameField"));
         registrationPage.submitForm();
         assertTrue(registrationPage.isErrorDisplayedForFirstName());
         assertEquals(registrationPage.getErrorMessageForInvalidFirstName(), expectedResult("FirstNameErrorMessage"));
@@ -190,7 +190,7 @@ public class RegistrationPageTest extends CommonApiTest {
     @Test
     public void testValidLastName() {
         homePage.accessRegistrationPage();
-        registrationPage.enterLastName("Doe");
+        registrationPage.enterLastName(expectedResult("LastName"));
         registrationPage.submitForm();
         assertTrue(registrationPage.isLastNameAccepted());
     }
@@ -198,7 +198,7 @@ public class RegistrationPageTest extends CommonApiTest {
     @Test
     public void testLastNameWithNumbers() {
         homePage.accessRegistrationPage();
-        registrationPage.enterLastName("Doe123");
+        registrationPage.enterLastName(expectedResult("LastNameWithNumbers"));
         registrationPage.submitForm();
         String actualResult = registrationPage.getErrorMessageForInvalidLastName();
         String expectedResult = "Last Name must be between 1 and 32 characters!";
@@ -209,7 +209,7 @@ public class RegistrationPageTest extends CommonApiTest {
     @Test
     public void testLastNameWithSpecialCharacters() {
         homePage.accessRegistrationPage();
-        registrationPage.enterLastName("Doe@Doe");
+        registrationPage.enterLastName(expectedResult("LastNameWithSpecialCharacters"));
         registrationPage.submitForm();
         assertTrue(registrationPage.isErrorDisplayedForLastName());
         // BUG
@@ -218,7 +218,7 @@ public class RegistrationPageTest extends CommonApiTest {
     @Test
     public void testLastNameWithSpaces() {
         homePage.accessRegistrationPage();
-        registrationPage.enterLastName("Doe Smith");
+        registrationPage.enterLastName(expectedResult("LastNameWithSpaces"));
         registrationPage.submitForm();
         String actualResult = registrationPage.getErrorMessageForInvalidLastName();
         String expectedResult = "Last Name must be between 1 and 32 characters!";
@@ -230,7 +230,7 @@ public class RegistrationPageTest extends CommonApiTest {
     @Test
     public void testEmptyLastNameField() {
         homePage.accessRegistrationPage();
-        registrationPage.enterLastName("");
+        registrationPage.enterLastName(expectedResult("EmptyLastNameField"));
         registrationPage.submitForm();
         assertTrue(registrationPage.isErrorDisplayedForLastName());
         String actualResult = registrationPage.getErrorMessageForInvalidLastName();
@@ -239,27 +239,8 @@ public class RegistrationPageTest extends CommonApiTest {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @BeforeMethod
-    public void accessRegisterPage(){
+    public void accessRegisterPage() {
         homePage = new HomePage(driver);
 
         registrationPage = new RegistrationPage(driver);
@@ -270,7 +251,7 @@ public class RegistrationPageTest extends CommonApiTest {
 
 
     @Test
-    public void printAllerrorMessages(){
+    public void printAllErrorMessages() {
 
         registrationPage.submitForm();
         registrationPage.getAllerrorMessageDisplayed();
