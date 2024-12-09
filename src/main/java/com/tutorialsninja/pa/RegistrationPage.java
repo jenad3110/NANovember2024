@@ -6,10 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class RegistrationPage extends CommonApiTest {
 
+    String getGeneratedEmail;
 
     public RegistrationPage(WebDriver driver) {
 
@@ -17,35 +21,36 @@ public class RegistrationPage extends CommonApiTest {
 
     }
 
-        // WebElements on the Registration Page
+    // WebElements on the Registration Page
 
-        // Personal Details
-        @FindBy(id = "input-firstname")
-        WebElement firstName;
 
-        @FindBy(id = "input-lastname")
-        WebElement lastName;
+    // Personal Details
+    @FindBy(id = "input-firstname")
+    WebElement firstName;
 
-        @FindBy(id = "input-email")
-        WebElement email;
+    @FindBy(id = "input-lastname")
+    WebElement lastName;
 
-        @FindBy(id = "input-telephone")
-        WebElement telephone;
+    @FindBy(id = "input-email")
+    WebElement email;
 
-        // Password
-        @FindBy(id = "input-password")
-        WebElement password;
+    @FindBy(id = "input-telephone")
+    WebElement telephone;
 
-        @FindBy(id = "input-confirm")
-        WebElement confirmPassword;
+    // Password
+    @FindBy(id = "input-password")
+    WebElement password;
 
-        // Privacy Policy
-        @FindBy(name = "agree")
-        WebElement privacyPolicyCheckbox;
+    @FindBy(id = "input-confirm")
+    WebElement confirmPassword;
 
-        // Continue Button
-        @FindBy(xpath = "//input[@type='submit' and @value='Continue']")
-        WebElement continueButton;
+    // Privacy Policy
+    @FindBy(name = "agree")
+    WebElement privacyPolicyCheckbox;
+
+    // Continue Button
+    @FindBy(xpath = "//input[@type='submit' and @value='Continue']")
+    WebElement continueButton;
 
 
     @FindBy(css = "input[type='submit']")
@@ -115,41 +120,42 @@ public class RegistrationPage extends CommonApiTest {
     List<WebElement> errorMessages; // Using a list to check for multiple error messages
 
 
-
     // Methods to interact with the elements
 
-        public void enterFirstName(String fName) {
-            firstName.sendKeys(fName);
-            System.out.println("first name "+fName+ " entered" );
-        }
+    public void enterFirstName(String fName) {
+        firstName.sendKeys(fName);
+        System.out.println("first name " + fName + " entered");
+    }
 
-        public void enterLastName(String lName) {
-            lastName.sendKeys(lName);
-        }
+    public void enterLastName(String lName) {
+        lastName.sendKeys(lName);
+    }
 
-        public void enterEmail(String emailAddress) {
-            email.sendKeys(emailAddress);
-        }
+    public void enterEmail(String emailAddress) {
+        email.sendKeys(emailAddress);
 
-        public void enterTelephone(String phone) {
-            telephone.sendKeys(phone);
-        }
+    }
 
-        public void enterPassword(String pwd) {
-            password.sendKeys(pwd);
-        }
 
-        public void enterConfirmPassword(String confirmPwd) {
-            confirmPassword.sendKeys(confirmPwd);
-        }
+    public void enterTelephone(String phone) {
+        telephone.sendKeys(phone);
+    }
 
-        public void agreeToPrivacyPolicy() {
-            privacyPolicyCheckbox.click();
-        }
+    public void enterPassword(String pwd) {
+        password.sendKeys(pwd);
+    }
 
-        public void clickContinue() {
-            continueButton.click();
-        }
+    public void enterConfirmPassword(String confirmPwd) {
+        confirmPassword.sendKeys(confirmPwd);
+    }
+
+    public void agreeToPrivacyPolicy() {
+        privacyPolicyCheckbox.click();
+    }
+
+    public void clickContinue() {
+        continueButton.click();
+    }
 
     public void clickMyAccountLink() {
         myAccountLink.click();
@@ -260,11 +266,9 @@ public class RegistrationPage extends CommonApiTest {
     }
 
 
-
     public void submitForm() {
         submitButton.click();
     }
-
 
 
     public boolean isErrorDisplayedForFirstName() {
@@ -274,14 +278,14 @@ public class RegistrationPage extends CommonApiTest {
 
 //    public String getErrorMessageForInvalidFirstName(){
     //        return firstNameErrorMessage.getText();
-  //  }
+    //  }
 
 
-    public String getErrorMessageForInvalidEmail(){
+    public String getErrorMessageForInvalidEmail() {
         return emailErrorMessage.getText();
     }
 
-    public String getErrorMessageForInvalidTelephone(){
+    public String getErrorMessageForInvalidTelephone() {
         return telephoneErrorMessage.getText();
     }
 
@@ -328,24 +332,41 @@ public class RegistrationPage extends CommonApiTest {
     }
 
 
-    public void getAllerrorMessageDisplayed(){
+    public void getAllerrorMessageDisplayed() {
 
-            for (WebElement element : errorMessages)
+        for (WebElement element : errorMessages)
 
 
-                System.out.println(element.getText());
+            System.out.println(element.getText());
 
     }
 
-    @FindBy (xpath = "//*[@id=\"account\"]/div[2]/div/div")
+    @FindBy(xpath = "//*[@id=\"account\"]/div[2]/div/div")
     WebElement erormsgforfirstname;
 
 
-        public String returnErrorMessageForFirstName(){
+    public String returnErrorMessageForFirstName() {
 
-            System.out.println("");
-            return  erormsgforfirstname.getText();
-        }
+        System.out.println("");
+        return erormsgforfirstname.getText();
+    }
+
+
+    public String getEmail() {
+        return getGeneratedEmail;
+
+    }
+
+    public String generateEmail() {
+
+        DateFormat df = new SimpleDateFormat("MMddyyyyHHmmssa");
+        Date date = new Date();
+        df.format(date);
+        getGeneratedEmail = "JohnDoe" + df.format(date) + "@gmail.com";
+        return getGeneratedEmail;
+
+
+    }
 
 
 }
