@@ -75,6 +75,11 @@ public class LoginPageTest extends CommonApiTest {
 
     @Test
     public void loginUsingValidNewRegisteredAccountCredentials() {
+        
+        // register new account 
+        // email is generated automatically 
+        // login using the email and password from the registered account
+        
         String getGeneratedEmail;
         homePage.clickMyAccountButton();
         homePage.clickRegisterButton();
