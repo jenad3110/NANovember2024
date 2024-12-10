@@ -3,6 +3,7 @@ package com.tutorialsninja.pa;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.tracing.opentelemetry.SeleniumSpanExporter;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -143,6 +144,46 @@ public class LoginPage {
 
     public void clickContinueButtonToLogOut() {
         continueBtnForLogOut.click();
+    }
+
+    public void clearEmailField() {
+        emailAddress.clear();
+    }
+
+    public void clearPasswordField() {
+        password.clear();
+    }
+
+    public boolean isEmailFieldDisplayed() {
+        if (emailAddress.isDisplayed()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isPasswordFieldDisplayed() {
+        if (password.isDisplayed()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isLoginButtonDisplayed() {
+        if (loginBtn.isDisplayed()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isUserLoggedIn() {
+        if (homeLogo.isDisplayed()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
