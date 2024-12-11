@@ -45,7 +45,7 @@ public class CommonApiTest {
         FileInputStream fileInputStream = null;
 
         try {
-            fileInputStream = new FileInputStream("expectedResults.properties");
+            fileInputStream = new FileInputStream("config.properties");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

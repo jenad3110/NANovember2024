@@ -31,6 +31,7 @@ public class LoginPageTest extends CommonApiTest {
         loginPage.enterPassword();
         loginPage.clickLoginBtn();
         loginPage.homeLogo();
+        System.out.println("Test Case: login using valid email and password ");
 
     }
 
@@ -40,10 +41,28 @@ public class LoginPageTest extends CommonApiTest {
         loginPage.enterFalsePassword();
         loginPage.clickLoginBtn();
         loginPage.errorLogin();
-
+        System.out.println("Test Case: login using invalid email and password ");
 
     }
 
+    @Test
+    public void emptyFieldsLogin() {
+        loginPage.clearEmailField();
+        loginPage.clearPasswordField();
+        loginPage.clickLoginBtn();
+        loginPage.errorLogin();
+        System.out.println("Test Case: Login with empty fields failed as expected.");
+    }
+
+    @Test
+    public void invalidEmailFormatLogin() {
+        loginPage.enterEmailAddress(expectedResult("InvalidEmailFormat"));
+        loginPage.enterPassword(expectedResult("PassKey"));
+        loginPage.clickLoginBtn();
+        loginPage.errorLogin();
+        System.out.println("Test Case: Login with invalid email format failed as expected.");
+
+    }
 
     @Test
     public void Logout() {
@@ -52,25 +71,29 @@ public class LoginPageTest extends CommonApiTest {
         loginPage.clickLoginBtn();
         loginPage.clickLogoutBtn();
         loginPage.logoutText();
+        System.out.println("Test Case: login out session ");
 
     }
 
+
     @Test
-    public void validCredentialForPassword() {
+    public void validCredentialForgottenPassword() {
         loginPage.forgottenPassword();
         loginPage.validEmailForPass();
         loginPage.continueBtnForPass();
         loginPage.successAlert();
+        System.out.println("Test Case:forgotten password using valid credentials");
 
     }
 
     @Test
-    public void invalidCredentialForPassword() {
+    public void invalidCredentialForgottenPassword() {
         loginPage.forgottenPassword();
         loginPage.falseEmailForPass();
         loginPage.continueBtnForPass();
         loginPage.warningAlert();
         loginPage.backBtn();
+        System.out.println("Test Case:forgotten password using invalid credentials");
     }
 
     @Test
@@ -99,9 +122,29 @@ public class LoginPageTest extends CommonApiTest {
         loginPage.enterEmailAddress(getGeneratedEmail);
         loginPage.enterPassword(expectedResult("Password"));
         loginPage.clickLoginBtn();
+        System.out.println("Test Case: Login Using valid new registered account credentials");
 
 
     }
+
+
+    @Test
+    public void validateUIElements() {
+        assert loginPage.isEmailFieldDisplayed();
+        assert loginPage.isPasswordFieldDisplayed();
+        assert loginPage.isLoginButtonDisplayed();
+        System.out.println("Test Case: UI elements validation passed.");
+    }
+
+
+    @Test
+    public void sessionPersistenceAfterLogin() {
+        loginPage.enterEmailAddress(expectedResult("EmailAddress"));
+        loginPage.enterPassword(expectedResult("PassKey"));
+        loginPage.clickLoginBtn();
+        driver.navigate().refresh();
+        assert loginPage.isUserLoggedIn();
+        System.out.println("Test Case: Session persistence passed.");
+    }
+
 }
-
-

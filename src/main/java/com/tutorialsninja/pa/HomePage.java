@@ -13,7 +13,6 @@ import java.util.List;
 public class HomePage extends CommonApiTest {
 
 
-
     public HomePage(WebDriver driver) {
 
         PageFactory.initElements(driver, this);
@@ -90,68 +89,67 @@ public class HomePage extends CommonApiTest {
     @FindBy(linkText = "Login")
     WebElement loginButton;
 
-    @FindBy (linkText = "Desktops")
-    WebElement  desktopsDropdown;
+    @FindBy(linkText = "Desktops")
+    WebElement desktopsDropdown;
 
-    @FindBy (linkText = "Show AllDesktops")
+    @FindBy(linkText = "Show AllDesktops")
     WebElement showAllDesktops;
 
 
+    // Methods to interact with elements
+    public void clickCurrencySection() {
+        currencySection.click();
 
-        // Methods to interact with elements
-        public void clickCurrencySection() {
-            currencySection.click();
+    }
 
-        }
+    public void clickCurrencyLogo() {
+        currencyLogo.click();
 
-        public void clickCurrencyLogo() {
-            currencyLogo.click();
+    }
 
-        }
+    public void clickPhoneLogo() {
+        phoneLogo.click();
+    }
 
-        public void clickPhoneLogo() {
-            phoneLogo.click();
-        }
+    public String getPhoneNumber() {
+        return phoneNumber.getText();
+    }
 
-        public String getPhoneNumber() {
-            return phoneNumber.getText();
-        }
+    public void clickLogo() {
+        logo.click();
+    }
 
-        public void clickLogo() {
-            logo.click();
-        }
+    public void clickWishListLogo() {
+        wishListLogo.click();
+    }
 
-        public void clickWishListLogo() {
-            wishListLogo.click();
-        }
+    public String getWishListText() {
+        return wishListText.getText();
+    }
 
-        public String getWishListText() {
-            return wishListText.getText();
-        }
+    public void clickShoppingCartLogo() {
+        shoppingCartLogo.click();
+    }
 
-        public void clickShoppingCartLogo() {
-            shoppingCartLogo.click();
-        }
+    public String getShoppingCartText() {
+        return shoppingCartText.getText();
+    }
 
-        public String getShoppingCartText() {
-            return shoppingCartText.getText();
-        }
+    public void clickCheckOutLogo() {
+        checkOutLogo.click();
+    }
 
-        public void clickCheckOutLogo() {
-            checkOutLogo.click();
-        }
+    public String getCheckOutText() {
+        return checkOutText.getText();
+    }
 
-        public String getCheckOutText() {
-            return checkOutText.getText();
-        }
+    public void clickNavigationBar() {
+        navigationBar.click();
+    }
 
-        public void clickNavigationBar() {
-            navigationBar.click();
-        }
-
-        public String getMyAccountText() {
-            return myAccountText.getText();
-        }
+    public String getMyAccountText() {
+        return myAccountText.getText();
+    }
 
     public String getLogoText() {
         return logo.getText();
@@ -161,36 +159,40 @@ public class HomePage extends CommonApiTest {
         return dollarSign.getText();
     }
 
-        public void clickCurrentCurrency() {
-            currentCurrency.click();
-        }
+    public void clickCurrentCurrency() {
+        currentCurrency.click();
+    }
 
-        public String getCurrencyText() {
-            return currencySection.getText();
-        }
+    public String getCurrencyText() {
+        return currencySection.getText();
+    }
 
-        public void clickPoundSIgn() {
-            poundSign.click();
-        }
+    public void clickPoundSIgn() {
+        poundSign.click();
+    }
 
-        public void clickUsDollarSection() {
-            usDollarSection.click();
-        }
+    public void clickUsDollarSection() {
+        usDollarSection.click();
+    }
 
-        public void clickRegisterButton() {
+    public void clickRegisterButton() {
 
-            registerButton.click();
-        }
+        registerButton.click();
+    }
 
-        public void clickMyAccountButton() {
+    public void clickMyAccountButton() {
 
-            myAccountButton.click();
-        }
+        myAccountButton.click();
+    }
 
+    public void clickLoginButton() {
 
-    public void getAllLinksOnHomePage(){
+        loginButton.click();
+    }
 
-        for(WebElement element :links)
+    public void getAllLinksOnHomePage() {
+
+        for (WebElement element : links)
             System.out.println(element.getAttribute("href"));
     }
 
@@ -208,7 +210,7 @@ public class HomePage extends CommonApiTest {
     }
 
 
-    public void accessRegistrationPage(){
+    public void accessRegistrationPage() {
         clickMyAccountButton();
         clickRegisterButton();
     }
@@ -224,29 +226,29 @@ public class HomePage extends CommonApiTest {
 
     }
 
-    public void accessLoginPage(){
+    public void accessLoginPage() {
         clickMyAccountButton();
-         loginButton.click();
+        clickLoginButton();
     }
 
 
-    public void hoverOverDesktopSection(WebDriver driver){
+    public void hoverOverDesktopSection(WebDriver driver) {
 
 
-            Actions actions = new Actions(driver);
-            actions.moveToElement(desktopsDropdown).build().perform();
+        Actions actions = new Actions(driver);
+        actions.moveToElement(desktopsDropdown).build().perform();
 
     }
 
-    public void clickShowAllDesktops(){
+    public void clickShowAllDesktops() {
 
-       showAllDesktops.click();
+        showAllDesktops.click();
 
     }
 
 
     public void navigateToDesktopsCategory(WebDriver driver) {
         hoverOverDesktopSection(driver);
-      //  showAllDesktops.click();
-        }
+        //  showAllDesktops.click();
     }
+}
