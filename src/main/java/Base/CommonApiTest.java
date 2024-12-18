@@ -1,7 +1,12 @@
 package Base;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import java.io.FileInputStream;
@@ -9,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
 
@@ -16,18 +22,36 @@ public class CommonApiTest {
 
 
     public Properties properties;
-    public  WebDriver driver;
+    public WebDriver driver;
 
+    public CommonApiTest(WebDriver driver){
+        this.driver = driver;
+    }
+
+    public CommonApiTest(){}
+
+
+
+
+    public WebDriver getDriver(){
+        return driver;
+    }
 
 
     @BeforeMethod
     public void SetUp() {
 
         setUpConfigFile();
+        System.out.println("step 1");
         driver = new ChromeDriver();
+        System.out.println("step 2");
         driver.manage().window().maximize();
+        System.out.println("step 3");
         driver.get("https://tutorialsninja.com/demo");
+        System.out.println("step 4");
         System.out.println("Before Method in common API accessed ");
+
+
     }
 
 
@@ -64,15 +88,15 @@ public class CommonApiTest {
     }
 
 
-    public void waitFor(int seconds)  {
 
-        try {
-            Thread.sleep(seconds * 1000L);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+   public void waitFor(int waitTime){
 
-    }
+       try {
+           Thread.sleep(waitTime* 1000L);
+       } catch (InterruptedException e) {
+           throw new RuntimeException(e);
+       }
+   }
 
 
 
@@ -87,6 +111,36 @@ public class CommonApiTest {
 
 
     }
+
+
+    public void clickElement(WebElement element){
+
+        element.click();
+
+    }
+
+    public void typeText(WebElement element,String text){
+
+        element.sendKeys(text);
+    }
+
+
+    public  void explicitlyWait(By byLocator){
+
+
+        // Use explicit wait to wait for the Hello World! message to be visible
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement helloWorldMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(byLocator));
+    }
+
+
+    public void scrollIntoView(WebElement element){
+
+        // Scroll the element into view using JavaScriptExecutor
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
+    }
+
 
 
 
