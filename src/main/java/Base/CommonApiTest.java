@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -43,7 +44,7 @@ public class CommonApiTest {
 
         setUpConfigFile();
         System.out.println("step 1");
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         System.out.println("step 2");
         driver.manage().window().maximize();
         System.out.println("step 3");
@@ -56,7 +57,7 @@ public class CommonApiTest {
 
 
 
-    @AfterMethod
+    @AfterMethod(enabled = false)
     public void CloseTheBrowser(){
 
         driver.close();

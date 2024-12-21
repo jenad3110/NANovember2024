@@ -7,7 +7,8 @@ import com.tutorialsninja.pa.RegistrationPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginPageTest extends CommonApiTest {
+public class
+LoginPageTest extends CommonApiTest {
 
 
     LoginPage loginPage;
