@@ -42,14 +42,16 @@ public class CommonApiTest {
     public void SetUp() {
 
         setUpConfigFile();
-        System.out.println("step 1");
+
         driver = new ChromeDriver();
-        System.out.println("step 2");
+
         driver.manage().window().maximize();
-        System.out.println("step 3");
+
         driver.get("https://tutorialsninja.com/demo");
-        System.out.println("step 4");
+
         System.out.println("Before Method in common API accessed ");
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
 
     }

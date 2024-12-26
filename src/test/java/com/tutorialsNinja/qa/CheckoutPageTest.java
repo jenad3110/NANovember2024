@@ -1,6 +1,7 @@
 package com.tutorialsNinja.qa;
 
 import Base.CommonApiTest;
+import com.sun.source.tree.AssertTree;
 import com.tutorialsninja.pa.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -19,7 +20,9 @@ public class CheckoutPageTest extends CommonApiTest {
     CartPage cartPage;
     CheckoutPage checkoutPage;
 
-@BeforeMethod
+    OrderPlacedSuccessPage orderPlacedSuccessPage;
+
+    @BeforeMethod
     public void setup2() {
         homePage = new HomePage(driver);
         desktopsCategoryPage = new DesktopsCategoryPage(driver);
@@ -29,6 +32,7 @@ public class CheckoutPageTest extends CommonApiTest {
         productPage = new ProductPage(driver);
         cartPage  = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
+        orderPlacedSuccessPage = new OrderPlacedSuccessPage(driver);
     }
     @Test
     public void Homepage(){
@@ -108,7 +112,7 @@ public class CheckoutPageTest extends CommonApiTest {
          Assert.assertTrue(productPage.isProductAddedToCart());
          productPage.clickShoppingCartButton();
          productPage.clickChechoutButton();
-        // waitFor(1);
+         waitFor(1);
          checkoutPage.clickGuestCheckout();
          checkoutPage.clickContinueButton();
          checkoutPage.enterFirstName("John");
@@ -126,13 +130,19 @@ public class CheckoutPageTest extends CommonApiTest {
          // waitFor(3);
          checkoutPage.checkAgreeToTermsAndConditionsBox();
          checkoutPage.clickContinueButtonUnderPaymentMethod();
+         Assert.assertTrue(checkoutPage.isCheckoutComplete(), "Checkout was not completed successfully.");
         // waitFor(50);
          checkoutPage.clickComfirmOrderButton();
-         waitFor(50);
+
+         waitFor(05);
+
+         Assert.assertTrue(orderPlacedSuccessPage.isOrderSuccessMessageDisplayed());
+
+         System.out.println(orderPlacedSuccessPage.getSuccessMessageText());
 
 
          // Finalize checkout
-         Assert.assertTrue(checkoutPage.isCheckoutComplete(), "Checkout was not completed successfully.");
+         //
      }
 
         }
