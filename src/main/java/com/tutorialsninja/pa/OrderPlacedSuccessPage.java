@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 public class OrderPlacedSuccessPage {
 
 
+    WebDriver driver;
+
     public OrderPlacedSuccessPage(WebDriver driver){
 
         PageFactory.initElements(driver,this);
@@ -27,5 +29,13 @@ public class OrderPlacedSuccessPage {
     public String getSuccessMessageText(){
 
         return orderPlaceSuccessMessage.getText();
+    }
+
+    public boolean checkSuccessUrl(WebDriver driver){
+
+        String url = driver.getCurrentUrl();
+
+
+        return  url.contains("success");
     }
 }
