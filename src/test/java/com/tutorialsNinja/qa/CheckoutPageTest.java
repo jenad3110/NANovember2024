@@ -140,6 +140,10 @@ public class CheckoutPageTest extends CommonApiTest {
 
          System.out.println(orderPlacedSuccessPage.getSuccessMessageText());
 
+         System.out.println(orderPlacedSuccessPage.checkSuccessUrl(driver));
+
+         Assert.assertTrue(orderPlacedSuccessPage.checkSuccessUrl(driver),"success key word does not exist in the url");
+
 
          // Finalize checkout
          //
