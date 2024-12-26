@@ -24,7 +24,7 @@ public class CheckoutPage extends CommonApiTest {
     @FindBy(xpath = "//h1[contains(text(),'Checkout')]")
     WebElement checkoutPageTitle;
 
-    @FindBy(xpath = "//*[@id=\"collapse-checkout-option\"]/div/div/div[1]/div[2]/label/input")
+    @FindBy(xpath= " //*[@id='collapse-checkout-option']/div/div/div[1]/div[2]/label/input")
     WebElement guestButton;
 
     @FindBy(name = "firstname")
@@ -45,16 +45,16 @@ public class CheckoutPage extends CommonApiTest {
     @FindBy(name = "postcode")
     WebElement postcodeInput;
 
-    @FindBy(name="country_id")
+    @FindBy(name = "country_id")
     WebElement countryDropDown;
 
-    @FindBy(name="zone_id")
+    @FindBy(name = "zone_id")
     WebElement stateRegion;
 
     @FindBy(xpath = "//*[@id='button-guest']")
     WebElement continueButtonUnderPaymentSection;
 
-    @FindBy(xpath="//*[@id='input-payment-email']")
+    @FindBy(xpath = "//*[@id='input-payment-email']")
     WebElement emailField;
 
     @FindBy(xpath = "//*[@id='input-payment-telephone']")
@@ -66,8 +66,13 @@ public class CheckoutPage extends CommonApiTest {
     @FindBy(xpath = "//*[@id='button-payment-method']")
     WebElement continueButtonUnderPaymentMethod;
 
-    @FindBy(xpath = "//*[@id=\"collapse-payment-method\"]/div/div[3]/div/input[1]")
+    @FindBy(xpath = "//*[@id=\"collapse-payment-method\"]/div/div[2]/div/input[1]")
     WebElement agreeToTermsAndCondCheckBox;
+
+    @FindBy(xpath = "//*[@id=\"button-confirm\"]")
+    WebElement confirmOrderButton;
+
+
 
     // Methods
     public boolean isCheckoutPageDisplayed() {
@@ -78,9 +83,10 @@ public class CheckoutPage extends CommonApiTest {
         continueButton.click();
     }
 
-    public void clickGuestCheckout(){
-
+    public void clickGuestCheckout() {
+        System.out.println("guest button method accessed");
         guestButton.click();
+        System.out.println("guest button clicked");
     }
 
     public void enterFirstName(String firstName) {
@@ -113,45 +119,59 @@ public class CheckoutPage extends CommonApiTest {
         postcodeInput.sendKeys(postcode);
     }
 
-    public void clickContinueButton(){
+    public void clickContinueButton() {
 
         continueButton.click();
 
     }
 
 
-    public void selectRegion(String regionState){
+    public void selectRegion(String regionState) {
 
 
         Select select = new Select(stateRegion);
         select.selectByVisibleText(regionState);
     }
 
-    public void clickContinueButtonUnderPaymentSection(){
+    public void clickContinueButtonUnderPaymentSection() {
 
 
         continueButtonUnderPaymentSection.click();
     }
 
-    public void enterEmail(String email){
+    public void enterEmail(String email) {
 
-       emailField.sendKeys(email);
+        emailField.sendKeys(email);
     }
 
-    public void enterPhoneNumber(String phoneNumber){
+    public void enterPhoneNumber(String phoneNumber) {
 
 
         telephoneField.sendKeys(phoneNumber);
     }
 
-    public void clickContinueButtonUnderDeliveryMethod(){
+    public void clickContinueButtonUnderDeliveryMethod() {
 
         continueButtonUnderDeliveryMethod.click();
     }
 
-    public void clickContinueButtonUnderPaymentMethod(){
+    public void clickContinueButtonUnderPaymentMethod() {
 
         continueButtonUnderPaymentMethod.click();
     }
 
+   public boolean isCheckoutComplete() {
+           return isCheckoutPageDisplayed();
+
+    }
+
+    public void clickGuestCheckout1() {
+        guestButton.click();
+    }
+    public void checkAgreeToTermsAndConditionsBox(){
+        agreeToTermsAndCondCheckBox.click();
+    }
+    public void clickComfirmOrderButton(){
+        confirmOrderButton.click();
+    }
 }
