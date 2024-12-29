@@ -72,6 +72,15 @@ public class CheckoutPage extends CommonApiTest {
     @FindBy(xpath = "//*[@id=\"button-confirm\"]")
     WebElement confirmOrderButton;
 
+    @FindBy(xpath ="//*[@id='collapse-checkout-option']/div/div/div[1]/div[1]/label/input")
+    WebElement registerAccountOnCheckoutPage;
+
+    @FindBy(id ="input-payment-password")
+    WebElement enterPaymentPassword;
+
+    @FindBy(id = "input-payment-confirm")
+    WebElement enterPaymentConfirmPassword;
+
 
 
     // Methods
@@ -173,5 +182,14 @@ public class CheckoutPage extends CommonApiTest {
     }
     public void clickComfirmOrderButton(){
         confirmOrderButton.click();
+    }
+    public void registerAccountOnCheckoutPage(){
+        registerAccountOnCheckoutPage.click();
+    }
+    public void enterPaymentPassword(String paymentPwd){
+        enterPaymentPassword.sendKeys(paymentPwd);
+    }
+    public void enterPaymentConfirmPassword(String paymentConfPwd){
+        enterPaymentConfirmPassword.sendKeys(paymentConfPwd);
     }
 }
