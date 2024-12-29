@@ -62,6 +62,7 @@ public class TestSpeedOfThePage {
         driver.quit();
     }
 
+
     private static void checkLink(CloseableHttpClient httpClient, String url) {
         try {
             HttpGet request = new HttpGet(url);
