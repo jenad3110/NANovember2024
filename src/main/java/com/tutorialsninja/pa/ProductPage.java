@@ -25,6 +25,9 @@ public class ProductPage {
     @FindBy(xpath="//*[@id=\"cart\"]/button")
     WebElement shoppingCartButton;
 
+    @FindBy(xpath = "//*[@id=\"top-links\"]/ul/li[5]/a/span")
+    WebElement checkoutButton;
+
     // Methods
     public void addToCart() {
         addToCartButton.click();
@@ -37,5 +40,10 @@ public class ProductPage {
 
     public boolean isProductAddedToCart() {
         return successMessage.isDisplayed();
+    }
+    public void clickChechoutButton(){
+        checkoutButton.click();
+
+
     }
 }
