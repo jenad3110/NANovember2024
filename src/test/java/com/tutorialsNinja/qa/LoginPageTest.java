@@ -7,6 +7,7 @@ import com.tutorialsninja.pa.RegistrationPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+
 public class LoginPageTest extends CommonApiTest {
 
 
@@ -98,11 +99,11 @@ public class LoginPageTest extends CommonApiTest {
 
     @Test
     public void loginUsingValidNewRegisteredAccountCredentials() {
-        
+
         // register new account 
         // email is generated automatically 
         // login using the email and password from the registered account
-        
+
         String getGeneratedEmail;
         homePage.clickMyAccountButton();
         homePage.clickRegisterButton();
@@ -145,6 +146,8 @@ public class LoginPageTest extends CommonApiTest {
         driver.navigate().refresh();
         assert loginPage.isUserLoggedIn();
         System.out.println("Test Case: Session persistence passed.");
+
     }
+
 
 }
