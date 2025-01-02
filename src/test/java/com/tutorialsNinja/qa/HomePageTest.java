@@ -172,4 +172,7 @@ public class HomePageTest extends CommonApiTest {
         //---> next page desktop product page
     }
 
+
+
+
 }

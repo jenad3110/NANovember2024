@@ -16,9 +16,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 public class BrokenLinksChecker extends CommonApiTest {
 
+
+    /*
     public static void main(String[] args) {
 
 
@@ -76,4 +79,49 @@ public class BrokenLinksChecker extends CommonApiTest {
             System.out.println(url + " is a broken link. Error: " + e.getMessage());
         }
     }
+
+    */
+
+        public static void checkAllLinks(WebDriver driver, Properties config) {
+            List<WebElement> links = driver.findElements(By.tagName("a"));
+
+            RequestConfig requestConfig = RequestConfig.custom()
+                    .setConnectionRequestTimeout(5000)
+                    .setConnectTimeout(5000)
+                    .setSocketTimeout(5000)
+                    .build();
+
+            try (CloseableHttpClient httpClient = HttpClients.custom()
+                    .setDefaultRequestConfig(requestConfig)
+                    .build()) {
+
+                for (WebElement link : links) {
+                    String url = link.getAttribute("href");
+                    if (url != null && !url.isEmpty()) {
+                        checkLink(httpClient, url);
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private static void checkLink(CloseableHttpClient httpClient, String url) {
+            try {
+                HttpGet request = new HttpGet(url);
+                try (CloseableHttpResponse response = httpClient.execute(request)) {
+                    int statusCode = response.getStatusLine().getStatusCode();
+                    if (statusCode >= 400) {
+                        System.out.println(url + " is a broken link. Status code: " + statusCode);
+                    } else {
+                        System.out.println(url + " is a valid link. Status code: " + statusCode);
+                    }
+                    EntityUtils.consume(response.getEntity());
+                }
+            } catch (IOException e) {
+                System.out.println(url + " is a broken link. Error: " + e.getMessage());
+            }
+        }
+
+
 }

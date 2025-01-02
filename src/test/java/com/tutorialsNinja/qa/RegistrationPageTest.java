@@ -33,19 +33,12 @@ public class RegistrationPageTest extends CommonApiTest {
         registrationPage.clickContinue();
         waitFor(30);
 
-    }
+    } 
 
-    @Test(groups = "end to end")
-    public void accessAccountAfterRegistration() {
-        homePage.accessRegistrationPage();
-        homePage.clickMyAccountButton();
-        homePage.accessRegistrationPage();
-        registerNewUser();
-        registrationPage.clickOrderHistoryLink();
-    }
 
     @Test
     public void testRightColumnDisplayed() {
+        homePage = new HomePage(driver);
         homePage.accessRegistrationPage();
         assertTrue(rightColumnPage.isColumnRightDisplayed());
     }

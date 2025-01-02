@@ -17,6 +17,7 @@ public class RegistrationPage extends CommonApiTest {
 
     public RegistrationPage(WebDriver driver) {
 
+        super(driver);
         PageFactory.initElements(driver, this);
 
     }
@@ -128,6 +129,7 @@ public class RegistrationPage extends CommonApiTest {
     }
 
     public void enterLastName(String lName) {
+        typeText(lastName,lName);
         lastName.sendKeys(lName);
     }
 
@@ -189,9 +191,19 @@ public class RegistrationPage extends CommonApiTest {
         recurringPaymentsLink.click();
     }
 
-    public void clickRewardPointsLink() {
-        rewardPointsLink.click();
+//    public void clickRewardPointsLink() {
+//
+//        rewardPointsLink.click();
+//    }
+
+
+
+    public void clickRewardPointsLink(){
+
+        clickElement(rewardPointsLink);
     }
+
+
 
     public void clickReturnsLink() {
         returnsLink.click();

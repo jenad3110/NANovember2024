@@ -56,6 +56,14 @@ public class CheckoutPageTest extends CommonApiTest {
             waitFor(30);
 
         }
+
+        @Test
+        public void runSimpleTest(){
+        HomePage homePage = new HomePage(driver);
+        homePage.clickCurrencyLogo();
+        }
+
+
       @Test
        public void login(){
           String getGeneratedEmail;

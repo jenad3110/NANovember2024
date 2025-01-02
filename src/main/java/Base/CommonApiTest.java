@@ -41,6 +41,8 @@ public class CommonApiTest {
     @BeforeMethod
     public void SetUp() {
 
+
+
         setUpConfigFile();
 
         driver = new ChromeDriver();
@@ -52,6 +54,8 @@ public class CommonApiTest {
         System.out.println("Before Method in common API accessed ");
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+        runSpeedCheck();
 
 
     }
@@ -91,14 +95,14 @@ public class CommonApiTest {
 
 
 
-   public void waitFor(int waitTime){
+    public void waitFor(int waitTime){
 
-       try {
-           Thread.sleep(waitTime* 1000L);
-       } catch (InterruptedException e) {
-           throw new RuntimeException(e);
-       }
-   }
+        try {
+            Thread.sleep(waitTime* 1000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 
@@ -145,6 +149,16 @@ public class CommonApiTest {
 
 
 
+    public void runSpeedCheck(){
+
+        if (Boolean.parseBoolean(properties.getProperty("checkSpeed","false"))) {
+            String url = properties.getProperty("testUrl");
+            String currentUrl = driver.getCurrentUrl();
+            if(url.equalsIgnoreCase(currentUrl)){
+                System.out.println(currentUrl);
+            PageSpeedChecker.measurePageSpeed(currentUrl, properties);
+        }}
+    }
 
 
 
