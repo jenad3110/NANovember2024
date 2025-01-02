@@ -1,10 +1,12 @@
 package com.tutorialsNinja.qa;
+
 import Base.CommonApiTest;
 import com.tutorialsninja.pa.HomePage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 
 public class HomePageTest extends CommonApiTest {
 
@@ -16,22 +18,22 @@ public class HomePageTest extends CommonApiTest {
         homepage = new HomePage(driver);
         System.out.println("Before Method in HomePage test accessed ");
         System.out.println(getClass().getName());
+//        System.out.println(HomePageTest.class.getName());
     }
 
     @Test
-    public void getAllLinks(){
+    public void getAllLinks() {
 
         homepage.getAllLinksOnHomePage();
 
     }
 
 
-
     @Test
     public void hoverOverCurrencies() {
 
         homepage.hoverOverCurrenciesAndClickUsingActionClass(driver);
-  }
+    }
 
 
     @Test
@@ -43,7 +45,7 @@ public class HomePageTest extends CommonApiTest {
     @Test
     public void clickOnCurrencyLogo() {
 
-       homepage.clickCurrencyLogo();
+        homepage.clickCurrencyLogo();
     }
 
     @Test
@@ -103,16 +105,16 @@ public class HomePageTest extends CommonApiTest {
         String actualPhoneNumber;
         String expectedPhoneNumber = expectedResult("expectedPhoneNumber");
         actualPhoneNumber = homepage.getPhoneNumber();
-        Assert.assertEquals(actualPhoneNumber,expectedPhoneNumber );
+        Assert.assertEquals(actualPhoneNumber, expectedPhoneNumber);
     }
 
 
     @Test
-    public void LogoIsDisplayedAndClickable () {
+    public void LogoIsDisplayedAndClickable() {
 
         homepage.clickLogo();
         String actualLogo = homepage.getLogoText();
-        Assert.assertEquals(actualLogo,expectedResult("websiteLogo"));
+        Assert.assertEquals(actualLogo, expectedResult("websiteLogo"));
 
     }
 
@@ -146,30 +148,31 @@ public class HomePageTest extends CommonApiTest {
         String expectedDollarSign = expectedResult("expectedDollarSign");
         homepage.clickCurrencyLogo();
         homepage.clickUsDollarSection();
-        Assert.assertEquals(actualDollarSign,expectedDollarSign);
+        Assert.assertEquals(actualDollarSign, expectedDollarSign);
     }
 
 
     @Test
-    public void accessRegisterPage(){
+    public void accessRegisterPage() {
 
         homepage.accessRegistrationPage();
     }
 
     @Test
-    public void hoverOverDesktopSection(){
+    public void hoverOverDesktopSection() {
 
         homepage.hoverOverDesktopSection(driver);
 
     }
 
     @Test
-    public void clickShowAllDesktopsUnderDesktopSection(){
+    public void clickShowAllDesktopsUnderDesktopSection() {
 
         homepage.hoverOverDesktopSection(driver);
         homepage.clickShowAllDesktops();
 
         //---> next page desktop product page
     }
+
 
 }
