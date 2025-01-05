@@ -17,10 +17,11 @@ public class CartPage {
 
     // Locators
     @FindBy(linkText = "Checkout")
-    private WebElement checkoutButton;
+    WebElement checkoutButton;
 
     @FindBy(xpath = "//h1[contains(text(),'Shopping Cart')]")
-    private WebElement cartPageTitle;
+    WebElement cartPageTitle;
+
 
     // Methods
     public boolean isCartPageDisplayed() {
@@ -30,4 +31,6 @@ public class CartPage {
     public void proceedToCheckout() {
         checkoutButton.click();
     }
+
+
 }

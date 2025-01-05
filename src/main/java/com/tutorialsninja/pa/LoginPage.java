@@ -1,13 +1,15 @@
 package com.tutorialsninja.pa;
 
 
+import Base.CommonAPI;
+import Base.CommonApiTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.tracing.opentelemetry.SeleniumSpanExporter;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends CommonApiTest {
 
     public LoginPage(WebDriver driver) {
 
@@ -29,10 +31,10 @@ public class LoginPage {
 
 
     @FindBy(id = "input-email")
-    WebElement falseEmailAddress;
+    WebElement invalidEmailAddress;
 
     @FindBy(xpath = "//*[@id='input-password']")
-    WebElement falsePassword;
+    WebElement invalidPassword;
 
     @FindBy(xpath = "//*[@id='account-login']/div[1]")
     WebElement errorLoginMessage;
@@ -66,14 +68,6 @@ public class LoginPage {
     WebElement continueBtnForLogOut;
 
 
-    public void enterEmailAddress() {
-        emailAddress.sendKeys("dz@gmail.com");
-    }
-
-    public void enterPassword() {
-        password.sendKeys("salamo");
-    }
-
     public void enterEmailAddress(String email) {
         emailAddress.sendKeys(email);
     }
@@ -87,21 +81,25 @@ public class LoginPage {
         loginBtn.click();
     }
 
-    public void homeLogo() {
-        homeLogo.isDisplayed();
+    public boolean isHomeLogoDisplayed() {
+        return homeLogo.isDisplayed();
     }
 
-    public void enterFalseEmailAddress() {
-        falseEmailAddress.sendKeys("123dz@gmail.com");
+    public void enterInvalidEmailAddress(String email) {
+        invalidEmailAddress.sendKeys(email);
     }
 
-    public void enterFalsePassword() {
-        falsePassword.sendKeys("salamo");
+    public void enterInvalidPassword(String password) {
+        invalidPassword.sendKeys(password);
     }
 
     public void errorLogin() {
         System.out.println(errorLoginMessage.getText());
 
+    }
+
+    public boolean isErrorLoginMessageDisplayed() {
+        return errorLoginMessage.isDisplayed();
     }
 
 
@@ -113,20 +111,24 @@ public class LoginPage {
         System.out.println(logoutText.getText());
     }
 
+    public boolean isLogoutMessageDisplayed() {
+        return logoutText.isDisplayed();
+    }
+
     public void forgottenPassword() {
         forgottenPassword.click();
     }
 
-    public void validEmailForPass() {
-        emailForgottenPassword.sendKeys("dz@gmail.com");
+    public void validEmailForgottenPassword(String email) {
+        emailForgottenPassword.sendKeys(email);
 
     }
 
-    public void falseEmailForPass() {
-        emailForgottenPassword.sendKeys("salamo@gmail.com");
+    public void invalidEmailForgottenPassword(String email) {
+        emailForgottenPassword.sendKeys(email);
     }
 
-    public void continueBtnForPass() {
+    public void continueBtnForgottenPassword() {
         continueBtnForPass.click();
     }
 
@@ -134,8 +136,16 @@ public class LoginPage {
         System.out.println(successAlert.getText());
     }
 
+    public boolean isSuccessMessageDisplayed() {
+        return successAlert.isDisplayed();
+    }
+
     public void warningAlert() {
         System.out.println(warningAlert.getText());
+    }
+
+    public boolean isWarningMessageDisplayed(){
+        return warningAlert.isDisplayed();
     }
 
     public void backBtn() {
@@ -155,6 +165,7 @@ public class LoginPage {
     }
 
     public boolean isEmailFieldDisplayed() {
+
         if (emailAddress.isDisplayed()) {
             return true;
         } else {
@@ -163,6 +174,7 @@ public class LoginPage {
     }
 
     public boolean isPasswordFieldDisplayed() {
+
         if (password.isDisplayed()) {
             return true;
         } else {
@@ -171,6 +183,7 @@ public class LoginPage {
     }
 
     public boolean isLoginButtonDisplayed() {
+
         if (loginBtn.isDisplayed()) {
             return true;
         } else {
@@ -179,6 +192,7 @@ public class LoginPage {
     }
 
     public boolean isUserLoggedIn() {
+
         if (homeLogo.isDisplayed()) {
             return true;
         } else {

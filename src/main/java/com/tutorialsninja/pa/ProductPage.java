@@ -17,10 +17,10 @@ public class ProductPage {
 
     // Locators
     @FindBy(id = "button-cart")
-    private WebElement addToCartButton;
+    WebElement addToCartButton;
 
     @FindBy(xpath = "//*[@id=\"product-product\"]/div[1]")
-    private WebElement successMessage;
+    WebElement successMessage;
 
     @FindBy(xpath="//*[@id=\"cart\"]/button")
     WebElement shoppingCartButton;
@@ -41,7 +41,7 @@ public class ProductPage {
     public boolean isProductAddedToCart() {
         return successMessage.isDisplayed();
     }
-    public void clickChechoutButton(){
+    public void clickCheckoutButton(){
         checkoutButton.click();
 
 

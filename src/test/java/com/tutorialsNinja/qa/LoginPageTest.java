@@ -4,6 +4,7 @@ import Base.CommonApiTest;
 import com.tutorialsninja.pa.HomePage;
 import com.tutorialsninja.pa.LoginPage;
 import com.tutorialsninja.pa.RegistrationPage;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -27,82 +28,85 @@ public class LoginPageTest extends CommonApiTest {
     }
 
     @Test
-    public void validCredentialLogin() {
-        loginPage.enterEmailAddress();
-        loginPage.enterPassword();
+    public void testLoginWithValidCredentials() {
+        loginPage.enterEmailAddress(expectedResult("EmailAddress"));
+        loginPage.enterPassword(expectedResult("PassKey"));
         loginPage.clickLoginBtn();
-        loginPage.homeLogo();
+        Assert.assertTrue(loginPage.isHomeLogoDisplayed());
         System.out.println("Test Case: login using valid email and password ");
 
     }
 
     @Test
-    public void invalidCredentialLogin() {
-        loginPage.enterFalseEmailAddress();
-        loginPage.enterFalsePassword();
+    public void testLoginWithInvalidCredentials() {
+        loginPage.enterInvalidEmailAddress(expectedResult("InvalidEmailAddress"));
+        loginPage.enterInvalidPassword(expectedResult("InvalidPassword"));
         loginPage.clickLoginBtn();
         loginPage.errorLogin();
+        Assert.assertTrue(loginPage.isErrorLoginMessageDisplayed());
         System.out.println("Test Case: login using invalid email and password ");
 
     }
 
     @Test
-    public void emptyFieldsLogin() {
+    public void testLoginWithEmptyFields() {
         loginPage.clearEmailField();
         loginPage.clearPasswordField();
         loginPage.clickLoginBtn();
         loginPage.errorLogin();
+        Assert.assertTrue(loginPage.isErrorLoginMessageDisplayed());
         System.out.println("Test Case: Login with empty fields failed as expected.");
     }
 
     @Test
-    public void invalidEmailFormatLogin() {
+    public void testLoginWithInvalidEmailFormat() {
         loginPage.enterEmailAddress(expectedResult("InvalidEmailFormat"));
         loginPage.enterPassword(expectedResult("PassKey"));
         loginPage.clickLoginBtn();
         loginPage.errorLogin();
+        Assert.assertTrue(loginPage.isErrorLoginMessageDisplayed());
+        System.out.println(loginPage.isErrorLoginMessageDisplayed());
         System.out.println("Test Case: Login with invalid email format failed as expected.");
 
     }
 
     @Test
-    public void Logout() {
-        loginPage.enterEmailAddress();
-        loginPage.enterPassword();
+    public void testLogout() {
+        loginPage.enterEmailAddress(expectedResult("EmailAddress"));
+        loginPage.enterPassword(expectedResult("PassKey"));
         loginPage.clickLoginBtn();
         loginPage.clickLogoutBtn();
         loginPage.logoutText();
+        Assert.assertTrue(loginPage.isLogoutMessageDisplayed());
         System.out.println("Test Case: login out session ");
 
     }
 
 
     @Test
-    public void validCredentialForgottenPassword() {
+    public void testForgottenPasswordWithValidCredentials() {
         loginPage.forgottenPassword();
-        loginPage.validEmailForPass();
-        loginPage.continueBtnForPass();
+        loginPage.validEmailForgottenPassword(expectedResult("EmailAddress"));
+        loginPage.continueBtnForgottenPassword();
         loginPage.successAlert();
+        Assert.assertTrue(loginPage.isSuccessMessageDisplayed());
         System.out.println("Test Case:forgotten password using valid credentials");
 
     }
 
     @Test
-    public void invalidCredentialForgottenPassword() {
+    public void testForgottenPasswordWithInvalidCredentials() {
         loginPage.forgottenPassword();
-        loginPage.falseEmailForPass();
-        loginPage.continueBtnForPass();
+        loginPage.invalidEmailForgottenPassword(expectedResult("InvalidEmailAddress"));
+        loginPage.continueBtnForgottenPassword();
         loginPage.warningAlert();
+        Assert.assertTrue(loginPage.isWarningMessageDisplayed());
         loginPage.backBtn();
         System.out.println("Test Case:forgotten password using invalid credentials");
     }
 
     @Test
-    public void loginUsingValidNewRegisteredAccountCredentials() {
-
-        // register new account 
-        // email is generated automatically 
-        // login using the email and password from the registered account
+    public void testLoginUsingNewRegisteredAccountCredentials() {
 
         String getGeneratedEmail;
         homePage.clickMyAccountButton();
@@ -112,7 +116,7 @@ public class LoginPageTest extends CommonApiTest {
         registrationPage.enterEmail(registrationPage.generateEmail());
         System.out.println(registrationPage.getEmail());
         getGeneratedEmail = registrationPage.getEmail();
-        registrationPage.enterTelephone(expectedResult("Telephone"));
+        registrationPage.enterTelephone(expectedResult("PhoneNumber"));
         registrationPage.enterPassword(expectedResult("Password"));
         registrationPage.enterConfirmPassword(expectedResult("Password"));
         registrationPage.agreeToPrivacyPolicy();
@@ -123,31 +127,31 @@ public class LoginPageTest extends CommonApiTest {
         loginPage.enterEmailAddress(getGeneratedEmail);
         loginPage.enterPassword(expectedResult("Password"));
         loginPage.clickLoginBtn();
+        Assert.assertTrue(loginPage.isHomeLogoDisplayed());
         System.out.println("Test Case: Login Using valid new registered account credentials");
-
 
     }
 
 
     @Test
-    public void validateUIElements() {
-        assert loginPage.isEmailFieldDisplayed();
-        assert loginPage.isPasswordFieldDisplayed();
-        assert loginPage.isLoginButtonDisplayed();
+    public void testValidateLoginPageUIElements() {
+
+        Assert.assertTrue(loginPage.isEmailFieldDisplayed());
+        Assert.assertTrue(loginPage.isPasswordFieldDisplayed());
+        Assert.assertTrue(loginPage.isLoginButtonDisplayed());
         System.out.println("Test Case: UI elements validation passed.");
     }
 
 
     @Test
-    public void sessionPersistenceAfterLogin() {
+    public void testSessionPersistenceAfterLogin() {
         loginPage.enterEmailAddress(expectedResult("EmailAddress"));
         loginPage.enterPassword(expectedResult("PassKey"));
         loginPage.clickLoginBtn();
         driver.navigate().refresh();
-        assert loginPage.isUserLoggedIn();
+        Assert.assertTrue(loginPage.isUserLoggedIn());
         System.out.println("Test Case: Session persistence passed.");
 
     }
-
 
 }

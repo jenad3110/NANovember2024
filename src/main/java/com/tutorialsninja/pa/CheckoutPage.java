@@ -21,10 +21,10 @@ public class CheckoutPage extends CommonApiTest {
     @FindBy(id = "button-account")
     WebElement continueButton;
 
-    @FindBy(xpath = "//h1[contains(text(),'Checkout')]")
+    @FindBy(xpath = "//*[@id=\"common-success\"]/ul/li[3]/a")
     WebElement checkoutPageTitle;
 
-    @FindBy(xpath= " //*[@id='collapse-checkout-option']/div/div/div[1]/div[2]/label/input")
+    @FindBy(xpath = " //*[@id='collapse-checkout-option']/div/div/div[1]/div[2]/label/input")
     WebElement guestButton;
 
     @FindBy(name = "firstname")
@@ -72,6 +72,11 @@ public class CheckoutPage extends CommonApiTest {
     @FindBy(xpath = "//*[@id=\"button-confirm\"]")
     WebElement confirmOrderButton;
 
+    @FindBy(xpath = "//*[@id=\"content\"]/h1")
+    WebElement registrationSucceed;
+
+   @FindBy(linkText = "Continue")
+    WebElement continueButtonEndCheckout;
 
 
     // Methods
@@ -80,7 +85,7 @@ public class CheckoutPage extends CommonApiTest {
     }
 
     public void completeCheckout() {
-        continueButton.click();
+        continueButtonEndCheckout.click();
     }
 
     public void clickGuestCheckout() {
@@ -160,18 +165,29 @@ public class CheckoutPage extends CommonApiTest {
         continueButtonUnderPaymentMethod.click();
     }
 
-   public boolean isCheckoutComplete() {
-           return isCheckoutPageDisplayed();
+    public boolean isCheckoutComplete() {
+        return isCheckoutPageDisplayed();
 
     }
 
     public void clickGuestCheckout1() {
         guestButton.click();
     }
-    public void checkAgreeToTermsAndConditionsBox(){
+
+    public void checkAgreeToTermsAndConditionsBox() {
         agreeToTermsAndCondCheckBox.click();
     }
-    public void clickComfirmOrderButton(){
+
+    public void clickConfirmOrderButton() {
         confirmOrderButton.click();
+    }
+
+
+    public boolean isRegistrationSucceed() {
+        return registrationSucceed.isDisplayed();
+    }
+
+    public boolean isContinueButtonDisplayed(){
+        return continueButtonUnderDeliveryMethod.isDisplayed();
     }
 }

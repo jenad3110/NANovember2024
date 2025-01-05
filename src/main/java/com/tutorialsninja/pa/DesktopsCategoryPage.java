@@ -26,6 +26,7 @@ public class DesktopsCategoryPage extends CommonApiTest {
     private WebElement hpLp3065Product;
 
     // Methods
+
     public void addToCart() {
         addToCartButton.click();
     }
@@ -34,9 +35,6 @@ public class DesktopsCategoryPage extends CommonApiTest {
         return successMessage.isDisplayed();
     }
 
-
-
-    // Methods
     public void selectHP_LP3065() {
         hpLp3065Product.click();
     }
