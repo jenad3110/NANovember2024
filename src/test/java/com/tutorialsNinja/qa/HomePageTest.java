@@ -13,7 +13,7 @@ public class HomePageTest extends CommonApiTest {
     HomePage homepage;
 
     @BeforeMethod
-    public void initializeObjectsInTheClass() {
+    public void initializePageObjects() {
 
         homepage = new HomePage(driver);
         System.out.println("Before Method in HomePage test accessed ");
@@ -22,7 +22,7 @@ public class HomePageTest extends CommonApiTest {
     }
 
     @Test
-    public void getAllLinks() {
+    public void testRetrieveAllLinksOnHomePage() {
 
         homepage.getAllLinksOnHomePage();
 
@@ -30,77 +30,77 @@ public class HomePageTest extends CommonApiTest {
 
 
     @Test
-    public void hoverOverCurrencies() {
+    public void testHoverOverCurrenciesAndClickUsingActionClass() {
 
         homepage.hoverOverCurrenciesAndClickUsingActionClass(driver);
     }
 
 
     @Test
-    public void clickOnCurrencyText() {
+    public void testClickOnCurrencySection() {
 
         homepage.clickCurrencySection();
     }
 
     @Test
-    public void clickOnCurrencyLogo() {
+    public void testClickOnCurrencyLogo() {
 
         homepage.clickCurrencyLogo();
     }
 
     @Test
-    public void clickOnPhoneLogo() {
+    public void testClickOnPhoneLogo() {
 
         homepage.clickPhoneLogo();
 
     }
 
     @Test
-    public void clickOnMyAccountLogo() {
+    public void testClickOnMyAccountLogo() {
 
         homepage.clickMyAccountButton();
     }
 
     @Test
-    public void clickOnMyAccountText() {
+    public void testClickOnMyAccountText() {
 
         homepage.clickMyAccountButton();
     }
 
     @Test
-    public void clickOnWishListLogo() {
+    public void testClickOnWishListLogo() {
 
         homepage.clickWishListLogo();
     }
 
     @Test
-    public void clickOnShoppingCartLogo() {
+    public void testClickOnShoppingCartLogo() {
 
         homepage.clickShoppingCartLogo();
     }
 
     @Test
-    public void clickOnShoppingCartText() {
+    public void testClickOnShoppingCartText() {
 
         homepage.clickShoppingCartLogo();
     }
 
     @Test
-    public void clickOnCheckOutLogo() {
+    public void testClickOnCheckOutLogo() {
 
         homepage.clickCheckOutLogo();
     }
 
 
     @Test
-    public void hoverOverElementOnNavigationBar() {
+    public void testHoverOverNavigationBarElements() {
 
         homepage.hoverOverElementsOnNavigationBar(driver);
     }
 
 
     @Test
-    public void phoneNumberIsDisplayed() {
+    public void testPhoneNumberDisplay() {
 
         String actualPhoneNumber;
         String expectedPhoneNumber = expectedResult("expectedPhoneNumber");
@@ -110,7 +110,7 @@ public class HomePageTest extends CommonApiTest {
 
 
     @Test
-    public void LogoIsDisplayedAndClickable() {
+    public void testLogoIsDisplayedAndClickable() {
 
         homepage.clickLogo();
         String actualLogo = homepage.getLogoText();
@@ -119,30 +119,31 @@ public class HomePageTest extends CommonApiTest {
     }
 
     @Test
-    public void clickOnCurrencyPoundSign() {
+    public void testClickOnCurrencyPoundSign() {
 
         String expectedPoundSign = expectedResult("expectedPoundSign");
-        driver.findElement(By.xpath("//*[@class='hidden-xs hidden-sm hidden-md']")).click();
-        driver.findElement(By.xpath("//ul[@class='dropdown-menu']/li[2]/button")).click();
-        String actualSign = driver.findElement(By.xpath("//*[@class='btn-group']/button/strong")).getText();
+        homepage.clickHiddenCurrencyMenu();
+        homepage.clickPoundSIgn();
+        String actualSign = homepage.getCurrentCurrency();
         System.out.println(expectedPoundSign.equalsIgnoreCase(actualSign));
         System.out.println(actualSign);
+
+
     }
 
     @Test
-    public void clickOnCurrencyEuroSign() {
+    public void testClickOnCurrencyEuroSign() {
 
         String expectedEuroSign = expectedResult("expectedEuroSign");
-        driver.findElement(By.xpath("//*[@class='hidden-xs hidden-sm hidden-md']")).click();
-        driver.findElement(By.xpath("//ul[@class='dropdown-menu']/li[1]/button")).click();
-        String actualSign = driver.findElement(By.xpath("//*[@class='btn-group']/button/strong")).getText();
+        homepage.clickHiddenCurrencyMenu();
+        homepage.clickEuroSign();
+        String actualSign = homepage.getCurrentCurrency();
         System.out.println(expectedEuroSign.equalsIgnoreCase(actualSign));
         System.out.println(actualSign);
     }
 
     @Test
-    public void clickOnCurrencyDollarSign() {
-
+    public void testClickOnCurrencyDollarSign() {
 
         String actualDollarSign = homepage.getDollarSign();
         String expectedDollarSign = expectedResult("expectedDollarSign");
@@ -153,26 +154,30 @@ public class HomePageTest extends CommonApiTest {
 
 
     @Test
-    public void accessRegisterPage() {
+    public void testAccessRegistrationPage() {
 
         homepage.accessRegistrationPage();
-    }
-
-    @Test
-    public void hoverOverDesktopSection() {
-
-        homepage.hoverOverDesktopSection(driver);
+        Assert.assertTrue(homepage.isRegisterAccountDisplayed());
 
     }
 
     @Test
-    public void clickShowAllDesktopsUnderDesktopSection() {
+    public void testHoverOverDesktopSection() {
 
         homepage.hoverOverDesktopSection(driver);
+        Assert.assertTrue(homepage.isShowAllDesktopIsDisplayed());
+
+
+    }
+
+    @Test
+    public void testClickShowAllDesktopsUnderDesktopSection() {
+
+        homepage.hoverOverDesktopSection(driver);
+        Assert.assertTrue(homepage.isShowAllDesktopIsClickable());
         homepage.clickShowAllDesktops();
+        Assert.assertTrue(homepage.desktopsIsDisplayed());
 
-        //---> next page desktop product page
+
     }
-
-
 }

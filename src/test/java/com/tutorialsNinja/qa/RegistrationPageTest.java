@@ -254,7 +254,7 @@ public class RegistrationPageTest extends CommonApiTest {
     public void printAllErrorMessages() {
 
         registrationPage.submitForm();
-        registrationPage.getAllerrorMessageDisplayed();
+        registrationPage.getAllErrorMessageDisplayed();
     }
 
 }

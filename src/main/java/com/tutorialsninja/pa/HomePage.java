@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
+
 
 import java.util.List;
 
@@ -37,8 +37,10 @@ public class HomePage extends CommonApiTest {
     @FindBy(xpath = "//ul[@class='dropdown-menu']/li[1]/button")
     WebElement euroSign;
 
-    @FindBy(xpath = "//ul[@class='dropdown-menu']/li[3]/button")
+
+    @FindBy(xpath = "//*[@id=\"form-currency\"]/div/button/strong")
     WebElement dollarSign;
+
 
     @FindBy(xpath = "//*[@id='top-links']/ul/li[1]/a")
     WebElement phoneLogo;
@@ -76,7 +78,7 @@ public class HomePage extends CommonApiTest {
     @FindBy(xpath = "//*[@class='dropdown']/a/span")
     WebElement myAccountText;
 
-    @FindBy(xpath = "//*[@class='btn-group']/button/strong")
+    @FindBy(xpath = "//*[@id=\"form-currency\"]/div/button/strong")
     WebElement currentCurrency;
 
     @FindBy(xpath = "//*[@id='form-currency']/div/ul/li[3]/button")
@@ -96,6 +98,15 @@ public class HomePage extends CommonApiTest {
 
     @FindBy(linkText = "Show AllDesktops")
     WebElement showAllDesktops;
+
+    @FindBy(xpath = "//*[@id=\"account-account\"]/ul/li[2]/a")
+    WebElement accountText;
+
+    @FindBy(xpath = "//*[@id=\"logo\"]/h1/a")
+    WebElement homePageLogo;
+
+    @FindBy(xpath = "//*[@id=\"content\"]/h1")
+    WebElement registerAccount;
 
 
     // Methods to interact with elements
@@ -162,8 +173,17 @@ public class HomePage extends CommonApiTest {
         return dollarSign.getText();
     }
 
+    public void clickEuroSign() {
+        euroSign.click();
+    }
+
     public void clickCurrentCurrency() {
         currentCurrency.click();
+    }
+
+    public String getCurrentCurrency() {
+        return currentCurrency.getText();
+
     }
 
     public String getCurrencyText() {
@@ -191,6 +211,10 @@ public class HomePage extends CommonApiTest {
     public void clickLoginButton() {
 
         loginButton.click();
+    }
+
+    public void clickHiddenCurrencyMenu() {
+        hiddenCurrencyMenu.click();
     }
 
     public void getAllLinksOnHomePage() {
@@ -255,5 +279,28 @@ public class HomePage extends CommonApiTest {
         //  showAllDesktops.click();
     }
 
+    public boolean isHomePageLogoDisplayed() {
+        return homePageLogo.isDisplayed();
 
+    }
+
+    public boolean isAccountTextDisplayed() {
+        return accountText.isDisplayed();
+    }
+
+    public boolean isRegisterAccountDisplayed() {
+        return registerAccount.isDisplayed();
+    }
+
+    public boolean isShowAllDesktopIsDisplayed() {
+        return showAllDesktops.isDisplayed();
+    }
+
+    public boolean isShowAllDesktopIsClickable() {
+        return showAllDesktops.isEnabled();
+    }
+
+    public boolean desktopsIsDisplayed() {
+        return desktopsDropdown.isDisplayed();
+    }
 }
