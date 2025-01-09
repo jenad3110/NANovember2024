@@ -2,7 +2,7 @@ package com.tutorialsNinja.qa;
 
 import Base.CommonApiTest;
 import com.tutorialsninja.pa.HomePage;
-import org.openqa.selenium.By;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
