@@ -54,11 +54,13 @@ public class CommonApiTest {
     @BeforeMethod
     public void SetUp() {
 
+
         initializeBrowser();
 
         setUrl();
 
         driver.get(url);
+
 
         driver.manage().window().maximize();
 
@@ -103,8 +105,10 @@ public class CommonApiTest {
     }
 
 
+
     @AfterMethod
     public void CloseTheBrowser() {
+
 
         driver.close();
     }
