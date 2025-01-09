@@ -125,6 +125,7 @@ public class CommonApiTest {
             driver = new ChromeDriver();
             log.warn("Browser name is invalid or missing in config, defaulting to Chrome.");
         }
+
     }
 
     /**
