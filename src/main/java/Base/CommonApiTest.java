@@ -82,11 +82,13 @@ public class CommonApiTest {
     @BeforeMethod
     public void SetUp() {
 
+
         initializeBrowser();
 
         setUrl();
 
         driver.get(url);
+
 
         driver.manage().window().maximize();
 
@@ -132,17 +134,13 @@ public class CommonApiTest {
         log.info("Navigating to URL: {}", url);
     }
 
-    /**
-     * After method
-     **/
-//    @AfterMethod
-//    public void CloseTheBrowser() {
-//        log.debug("Closing the browser...");
-//        driver.close();
-//        log.info("Browser closed.");
-//    }
+
+
+
+
     @AfterMethod
     public void tearDown(ITestResult result) {
+
 
         log.info("AfterMethod opened");
         log.info("The test case  '{}' has been executed", result.getName());
@@ -150,6 +148,10 @@ public class CommonApiTest {
         driver.quit();
         log.info("driver.quit() method executed ");
         log.info("AfterMethod closed");
+
+
+        driver.close();
+    }
 
     }
 
