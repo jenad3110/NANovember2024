@@ -129,10 +129,12 @@ public class RegistrationPage extends CommonApiTest {
 
     public void enterLastName(String lName) {
         lastName.sendKeys(lName);
+        System.out.println("last name " + lName + " entered");
     }
 
     public void enterEmail(String emailAddress) {
         email.sendKeys(emailAddress);
+        System.out.println("emailAddress " + emailAddress + " entered");
 
     }
 
@@ -332,7 +334,7 @@ public class RegistrationPage extends CommonApiTest {
     }
 
 
-    public void getAllerrorMessageDisplayed() {
+    public void getAllErrorMessageDisplayed() {
 
         for (WebElement element : errorMessages)
 
@@ -342,13 +344,13 @@ public class RegistrationPage extends CommonApiTest {
     }
 
     @FindBy(xpath = "//*[@id=\"account\"]/div[2]/div/div")
-    WebElement erormsgforfirstname;
+    WebElement errorMsgForFirstname;
 
 
     public String returnErrorMessageForFirstName() {
 
-        System.out.println("");
-        return erormsgforfirstname.getText();
+        System.out.println();
+        return errorMsgForFirstname.getText();
     }
 
 
