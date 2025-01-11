@@ -20,7 +20,7 @@ public class LoginPage extends CommonApiTest {
     @FindBy(id = "input-email")
     WebElement emailAddress;
 
-    @FindBy(xpath = "*[@id='input-password']")
+    @FindBy(xpath = "//*[@id='input-password']")
     WebElement password;
 
     @FindBy(xpath = "//input[@class='btn btn-primary']")
