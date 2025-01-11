@@ -34,9 +34,7 @@ import java.util.Properties;
 public class CommonApiTest {
 
 
-    /**
-     * Log4J setup
-     **/
+   
     public static final Logger log = LogManager.getLogger(CommonApiTest.class);
 
 
@@ -52,22 +50,15 @@ public class CommonApiTest {
         this.driver = driver;
     }
 
-    /**
-     * declare the constructor
-     **/
+  
     public CommonApiTest() {
     }
 
-    /**
-     * get method for the driver variable
-     **/
     public WebDriver getDriver() {
         return driver;
     }
 
-    /**
-     * before suite
-     **/
+    
     @BeforeSuite
     public void initializeTestSuite() {
 
@@ -76,9 +67,7 @@ public class CommonApiTest {
 
     }
 
-    /**
-     * before method
-     **/
+   
     @BeforeMethod
     public void SetUp() {
 
@@ -101,9 +90,7 @@ public class CommonApiTest {
 
     }
 
-    /**
-     * initialization of browser
-     **/
+    
     public void initializeBrowser() {
         browserName = properties.getProperty("browserName");
         log.debug("Browser name from config: {}", browserName);
@@ -126,9 +113,7 @@ public class CommonApiTest {
         }
     }
 
-    /**
-     * set up the URL
-     **/
+    
     public void setUrl() {
         url = properties.getProperty("url");
         log.info("Navigating to URL: {}", url);
@@ -149,15 +134,9 @@ public class CommonApiTest {
         log.info("driver.quit() method executed ");
         log.info("AfterMethod closed");
 
-
-        driver.close();
     }
 
-    }
-
-    /**
-     * set the properties to use in Config.Properties file
-     **/
+    
     public void setUpConfigFile() {
         properties = new Properties();
         FileInputStream fileInputStream = null;
