@@ -49,7 +49,7 @@ public class LoginPageTest extends CommonApiTest {
         log.info("Test Case Passed: Login using invalid email and password.");
     }
 
-    //@Test
+    @Test
     public void testLoginWithEmptyFields() {
         loginPage.clearEmailField();
         loginPage.clearPasswordField();
@@ -59,7 +59,7 @@ public class LoginPageTest extends CommonApiTest {
         log.info("Test Case Passed: Login with empty fields failed as expected.");
     }
 
-    //@Test
+    @Test
     public void testLoginWithInvalidEmailFormat() {
         loginPage.enterEmailAddress(expectedResult("InvalidEmailFormat"));
         loginPage.enterPassword(expectedResult("PassKey"));
@@ -69,7 +69,7 @@ public class LoginPageTest extends CommonApiTest {
         log.info("Test Case Passed: Login with invalid email format failed as expected.");
     }
 
-    //@Test
+    @Test
     public void testLogout() {
         loginPage.enterEmailAddress(expectedResult("EmailAddress"));
         loginPage.enterPassword(expectedResult("PassKey"));
@@ -80,7 +80,7 @@ public class LoginPageTest extends CommonApiTest {
         log.info("Test Case Passed: Logout session validated.");
     }
 
-   // @Test
+    @Test
     public void testForgottenPasswordWithValidCredentials() {
         loginPage.forgottenPassword();
         loginPage.validEmailForgottenPassword(expectedResult("EmailAddress"));
@@ -90,7 +90,7 @@ public class LoginPageTest extends CommonApiTest {
         log.info("Test Case Passed: Forgotten password using valid credentials.");
     }
 
-   // @Test
+    @Test
     public void testForgottenPasswordWithInvalidCredentials() {
         loginPage.forgottenPassword();
         loginPage.invalidEmailForgottenPassword(expectedResult("InvalidEmailAddress"));
@@ -101,7 +101,7 @@ public class LoginPageTest extends CommonApiTest {
         log.info("Test Case Passed: Forgotten password using invalid credentials.");
     }
 
-    //@Test
+    @Test
     public void testLoginUsingNewRegisteredAccountCredentials() {
         String getGeneratedEmail;
         homePage.clickMyAccountButton();
@@ -126,7 +126,7 @@ public class LoginPageTest extends CommonApiTest {
         log.info("Test Case Passed: Login using new registered account credentials.");
     }
 
-    //@Test
+    @Test
     public void testValidateLoginPageUIElements() {
         Assert.assertTrue(loginPage.isEmailFieldDisplayed());
         Assert.assertTrue(loginPage.isPasswordFieldDisplayed());
@@ -134,7 +134,7 @@ public class LoginPageTest extends CommonApiTest {
         log.info("Test Case Passed: UI elements validation passed.");
     }
 
-    //@Test
+    @Test
     public void testSessionPersistenceAfterLogin() {
         loginPage.enterEmailAddress(expectedResult("EmailAddress"));
         loginPage.enterPassword(expectedResult("PassKey"));
