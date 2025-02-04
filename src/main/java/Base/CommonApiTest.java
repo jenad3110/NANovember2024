@@ -232,7 +232,7 @@ public class CommonApiTest {
         String name = result.getName();
         file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "\\screenshots\\screenshotsFailedTest\\" + name + " " + df.format(date) + ".jpeg"));
+            FileUtils.copyFile(file, new File(System.getProperty("user.dir") + "\\screenshots\\" + name + " " + df.format(date) + ".jpeg"));
         } catch (IOException e) {
 
             throw new RuntimeException(e);
